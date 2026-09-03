@@ -87,7 +87,7 @@ Do **not** bind `lucasxl.com` until all of the following are true:
 - verified profile copy is present;
 - at least one timeline entry is `published`;
 - the approved public email address and public GitHub URL are configured;
-- `npm run validate:content`, `npm test`, `npm run build`, and `npm run test:e2e` all pass.
+- `git diff --check`, `npm run validate:content`, `npm test`, `npm run build`, and `npm run test:e2e` all pass.
 
 The custom-domain release is a separate follow-up after publication-approved content is supplied. In that follow-up:
 
