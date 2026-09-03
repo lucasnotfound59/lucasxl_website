@@ -1,0 +1,24 @@
+---
+import {profile} from '../data/profile';
+import {ui} from '../i18n/ui';
+---
+
+<section class="intro-hero" aria-labelledby="intro-name">
+  <h1 id="intro-name" data-lang-group>
+    <span data-lang="en">{profile.en.name}</span>
+    <span data-lang="zh" hidden>{profile.zh.name}</span>
+  </h1>
+  <p data-lang-group>
+    <span data-lang="en">{profile.en.identity}</span>
+    <span data-lang="zh" hidden>{profile.zh.identity}</span>
+  </p>
+  <p data-lang-group>
+    <span data-lang="en">{profile.en.introduction}</span>
+    <span data-lang="zh" hidden>{profile.zh.introduction}</span>
+  </p>
+  <nav aria-label="Introduction links">
+    <a href="#timeline"><span data-lang-group><span data-lang="en">{ui.en.timeline}</span><span data-lang="zh" hidden>{ui.zh.timeline}</span></span></a>
+    <a href="/about"><span data-lang-group><span data-lang="en">{ui.en.about}</span><span data-lang="zh" hidden>{ui.zh.about}</span></span></a>
+    <a href="/contact"><span data-lang-group><span data-lang="en">{ui.en.contact}</span><span data-lang="zh" hidden>{ui.zh.contact}</span></span></a>
+  </nav>
+</section>

@@ -1,0 +1,16 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Page not found | Lucas Xin" description="The requested page could not be found.">
+  <section aria-labelledby="not-found-heading">
+    <h1 id="not-found-heading" data-lang-group>
+      <span data-lang="en">Page not found</span>
+      <span data-lang="zh" hidden>未找到页面</span>
+    </h1>
+    <nav aria-label="Not found navigation">
+      <a href="/"><span data-lang-group><span data-lang="en">Home</span><span data-lang="zh" hidden>首页</span></span></a>
+      <a href="/#timeline"><span data-lang-group><span data-lang="en">Timeline</span><span data-lang="zh" hidden>时间线</span></span></a>
+    </nav>
+  </section>
+</BaseLayout>

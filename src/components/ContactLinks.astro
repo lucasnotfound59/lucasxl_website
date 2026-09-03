@@ -1,0 +1,11 @@
+---
+import {contact} from '../data/profile';
+
+const emailValid=contact.email&&/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contact.email);
+const githubValid=contact.github&&/^https:\/\/github\.com\/[A-Za-z0-9-]+\/?$/.test(contact.github);
+---
+
+<ul class="contact-links">
+  {emailValid&&<li><a href={`mailto:${contact.email}`}>{contact.email}</a></li>}
+  {githubValid&&<li><a href={contact.github} rel="me noreferrer">GitHub</a></li>}
+</ul>

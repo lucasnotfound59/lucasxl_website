@@ -1,16 +1,14 @@
 ---
-import '../styles/global.css';
+import IntroHero from '../components/IntroHero.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
 ---
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>Lucas XL</title>
-  </head>
-  <body>
-    <main>
-      <h1>Lucas XL</h1>
-    </main>
-  </body>
-</html>
+
+<BaseLayout title="Lucas Xin" description="Personal portfolio of Lucas Xin.">
+  <IntroHero />
+  <section id="timeline" aria-labelledby="timeline-heading">
+    <h2 id="timeline-heading" data-lang-group>
+      <span data-lang="en">Timeline</span>
+      <span data-lang="zh" hidden>时间线</span>
+    </h2>
+  </section>
+</BaseLayout>
