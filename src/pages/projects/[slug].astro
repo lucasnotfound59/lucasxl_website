@@ -3,31 +3,35 @@ import {render} from 'astro:content';
 import EngineeringLayout from '../../layouts/EngineeringLayout.astro';
 import ResearchLayout from '../../layouts/ResearchLayout.astro';
 import {getPortfolioEntries,type PortfolioEntry} from '../../lib/content';
-import {neighborsFor} from '../../lib/portfolio';
+import {neighborsFor,routeFor} from '../../lib/portfolio';
 
 type Props={
   entry:PortfolioEntry;
-  previousSlug?:string;
-  nextSlug?:string;
+  previousRoute?:string;
+  nextRoute?:string;
 };
 
 export async function getStaticPaths(){
   const allEntries=await getPortfolioEntries();
   const projectEntries=allEntries.filter(entry=>entry.meta.kind==='project');
   const paths=projectEntries.map(entry=>{
-    const {previous,next}=neighborsFor(allEntries.map(item=>item.meta),entry.meta.slug);
+    const {previous,next}=neighborsFor(allEntries.map(item=>item.meta),entry.meta);
     return {
       params:{slug:entry.meta.slug},
-      props:{entry,previousSlug:previous?.slug,nextSlug:next?.slug}
+      props:{
+        entry,
+        previousRoute:previous&&routeFor(previous),
+        nextRoute:next&&routeFor(next)
+      }
     };
   });
   return paths;
 }
 
-const {entry,previousSlug,nextSlug}=Astro.props;
+const {entry,previousRoute,nextRoute}=Astro.props;
 const allEntries=await getPortfolioEntries();
-const previous=allEntries.find(item=>item.meta.slug===previousSlug);
-const next=allEntries.find(item=>item.meta.slug===nextSlug);
+const previous=allEntries.find(item=>item.route===previousRoute);
+const next=allEntries.find(item=>item.route===nextRoute);
 const {Content:EnglishContent}=await render(entry.en);
 const {Content:ChineseContent}=await render(entry.zh??entry.en);
 const ProjectLayout=entry.meta.template==='research'?ResearchLayout:EngineeringLayout;

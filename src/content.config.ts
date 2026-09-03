@@ -1,6 +1,8 @@
 import {defineCollection,z} from 'astro:content';
 import {glob} from 'astro/loaders';
 
+const contentRoot=process.env.PORTFOLIO_CONTENT_ROOT??'./src/content';
+
 const linkSchema=z.object({
   label:z.string().min(1),
   url:z.string().url()
@@ -37,19 +39,19 @@ const localizedSchema=z.object({
 
 export const collections={
   projectMeta:defineCollection({
-    loader:glob({pattern:'**/meta.json',base:'./src/content/projects'}),
+    loader:glob({pattern:'**/meta.json',base:`${contentRoot}/projects`}),
     schema:metaSchema
   }),
   projectCopy:defineCollection({
-    loader:glob({pattern:'**/*.md',base:'./src/content/projects'}),
+    loader:glob({pattern:'**/*.md',base:`${contentRoot}/projects`}),
     schema:localizedSchema
   }),
   experienceMeta:defineCollection({
-    loader:glob({pattern:'**/meta.json',base:'./src/content/experiences'}),
+    loader:glob({pattern:'**/meta.json',base:`${contentRoot}/experiences`}),
     schema:metaSchema
   }),
   experienceCopy:defineCollection({
-    loader:glob({pattern:'**/*.md',base:'./src/content/experiences'}),
+    loader:glob({pattern:'**/*.md',base:`${contentRoot}/experiences`}),
     schema:localizedSchema
   })
 };

@@ -8,7 +8,10 @@ export default defineConfig({
   },
   webServer:{
     command:'npm run dev -- --host 127.0.0.1',
-    env:{ASTRO_DEV_BACKGROUND:'1'},
+    env:{
+      ASTRO_DEV_BACKGROUND:'1',
+      PORTFOLIO_CONTENT_ROOT:'./tests/fixtures/portfolio-content'
+    },
     port:4321,
     reuseExistingServer:true
   },

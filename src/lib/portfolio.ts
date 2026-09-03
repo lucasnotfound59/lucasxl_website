@@ -2,6 +2,7 @@ export type EntryKind='project'|'experience';
 export type TemplateKind='research'|'engineering'|'experience';
 export type PublicationStatus='draft'|'published';
 export type EntryLink={label:string;url:string};
+export type EntryIdentity=Pick<EntryMeta,'kind'|'slug'>;
 
 export type EntryMeta={
   slug:string;
@@ -43,13 +44,15 @@ export function routeFor(entry:EntryMeta):string {
 
 export function neighborsFor<T extends EntryMeta>(
   entries:T[],
-  slug:string
+  identity:EntryIdentity
 ):{
   previous:T|undefined;
   next:T|undefined;
 } {
   const ordered=[...entries].sort(compareEntries);
-  const index=ordered.findIndex(entry=>entry.slug===slug);
+  const index=ordered.findIndex(entry=>
+    entry.kind===identity.kind&&entry.slug===identity.slug
+  );
   if(index<0){
     return {previous:undefined,next:undefined};
   }

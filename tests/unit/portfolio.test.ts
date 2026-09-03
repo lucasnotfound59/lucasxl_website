@@ -47,15 +47,29 @@ describe('portfolio metadata',()=>{
       {...project,slug:'middle-project',startDate:'2025-01-01'},
       experience
     ].sort(compareEntries);
-    expect(neighborsFor(entries,'middle-project')).toEqual({
+    expect(neighborsFor(entries,{kind:'project',slug:'middle-project'})).toEqual({
       previous:project,
       next:experience
     });
   });
 
   it('returns empty edge neighbors',()=>{
-    expect(neighborsFor([project],project.slug)).toEqual({
+    expect(neighborsFor([project],project)).toEqual({
       previous:undefined,
+      next:undefined
+    });
+  });
+
+  it('distinguishes identical slugs across project and experience routes',()=>{
+    const sharedExperience={
+      ...experience,
+      slug:project.slug
+    };
+    expect(neighborsFor(
+      [project,sharedExperience],
+      {kind:'experience',slug:project.slug}
+    )).toEqual({
+      previous:project,
       next:undefined
     });
   });

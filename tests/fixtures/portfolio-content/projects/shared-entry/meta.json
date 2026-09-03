@@ -1,0 +1,11 @@
+{
+  "slug": "shared-entry",
+  "kind": "project",
+  "template": "research",
+  "startDate": "2024-01-01",
+  "category": "Fixture",
+  "status": "published",
+  "cover": "/images/default-cover.svg",
+  "order": 0,
+  "links": []
+}

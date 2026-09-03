@@ -1,0 +1,11 @@
+{
+  "slug": "engineering-entry",
+  "kind": "project",
+  "template": "engineering",
+  "startDate": "2026-01-01",
+  "category": "Fixture",
+  "status": "published",
+  "cover": "/images/default-cover.svg",
+  "order": 0,
+  "links": []
+}
