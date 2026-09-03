@@ -1,5 +1,5 @@
 import {describe,expect,it} from 'vitest';
-import {compareEntries,groupEntriesByYear,routeFor,type EntryMeta} from '../../src/lib/portfolio';
+import {compareEntries,groupEntriesByYear,neighborsFor,routeFor,type EntryMeta} from '../../src/lib/portfolio';
 
 const project:EntryMeta={
   slug:'early-project',
@@ -39,5 +39,24 @@ describe('portfolio metadata',()=>{
   it('creates child routes by entry kind',()=>{
     expect(routeFor(project)).toBe('/projects/early-project');
     expect(routeFor(experience)).toBe('/experiences/later-program');
+  });
+
+  it('returns chronological previous and next entries',()=>{
+    const entries=[
+      project,
+      {...project,slug:'middle-project',startDate:'2025-01-01'},
+      experience
+    ].sort(compareEntries);
+    expect(neighborsFor(entries,'middle-project')).toEqual({
+      previous:project,
+      next:experience
+    });
+  });
+
+  it('returns empty edge neighbors',()=>{
+    expect(neighborsFor([project],project.slug)).toEqual({
+      previous:undefined,
+      next:undefined
+    });
   });
 });

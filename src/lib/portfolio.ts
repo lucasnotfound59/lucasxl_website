@@ -40,3 +40,21 @@ export function routeFor(entry:EntryMeta):string {
   const prefix=entry.kind==='project'?'projects':'experiences';
   return `/${prefix}/${entry.slug}`;
 }
+
+export function neighborsFor<T extends EntryMeta>(
+  entries:T[],
+  slug:string
+):{
+  previous:T|undefined;
+  next:T|undefined;
+} {
+  const ordered=[...entries].sort(compareEntries);
+  const index=ordered.findIndex(entry=>entry.slug===slug);
+  if(index<0){
+    return {previous:undefined,next:undefined};
+  }
+  return {
+    previous:ordered[index-1],
+    next:ordered[index+1]
+  };
+}
