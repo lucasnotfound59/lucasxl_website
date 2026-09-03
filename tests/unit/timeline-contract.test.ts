@@ -13,3 +13,10 @@ it('uses a link for each timeline preview and contains no inline detail region',
   expect(source).toContain('<a');
   expect(source).not.toContain('data-entry-detail');
 });
+
+it('keeps timeline card titles subordinate to year headings',()=>{
+  const timelineFile=resolve('src/components/Timeline.astro');
+  const entryFile=resolve('src/components/TimelineEntry.astro');
+  expect(readFileSync(timelineFile,'utf8')).toContain('<h3 id={`timeline-year-${group.year}`}');
+  expect(readFileSync(entryFile,'utf8')).toContain('<h4 data-lang-group>');
+});

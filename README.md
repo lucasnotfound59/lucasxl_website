@@ -70,6 +70,8 @@ Before setting an entry to `published`, confirm that:
 
 ## Cloudflare Pages deployment
 
+The deployment target is the existing public GitHub repository [`lucasxl_website`](https://github.com/lucasnotfound59/lucasxl_website). Cloudflare Pages is connected to this exact repository.
+
 Create a Pages application through **Workers & Pages → Create application → Pages → Connect to Git**. Authorize the Cloudflare Workers and Pages GitHub App for **Only select repositories**, and select only `lucasxl_website` (the existing GitHub repository at `https://github.com/lucasnotfound59/lucasxl_website.git`). Configure:
 
 | Setting | Value |

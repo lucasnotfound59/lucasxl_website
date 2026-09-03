@@ -17,6 +17,22 @@ test('timeline cards navigate instead of expanding inline',async({page})=>{
   await expect(page.locator('article.research-project')).toBeVisible();
 });
 
+test('home ends with a localized contact call to action before the shared footer',async({page})=>{
+  await page.goto('/');
+  const sections=await page.locator('body').evaluate(body=>
+    [...body.querySelectorAll('.intro-hero,#timeline,.home-contact,.site-footer')]
+      .map(element=>element.classList.contains('intro-hero')
+        ?'intro'
+        :element.id||element.className)
+  );
+  expect(sections).toEqual(['intro','timeline','home-contact','site-footer']);
+
+  const contactCta=page.locator('.home-contact');
+  await expect(contactCta.getByRole('link',{name:'Contact'})).toHaveAttribute('href','/contact');
+  await page.getByRole('button',{name:'中'}).click();
+  await expect(contactCta.getByRole('link',{name:'联系'})).toBeVisible();
+});
+
 test('generated templates preserve cross-kind navigation and Chinese fallback',async({page})=>{
   await page.goto('/experiences/shared-entry');
   await expect(page.locator('article.experience-entry')).toBeVisible();

@@ -7,4 +7,20 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 <BaseLayout title="Lucas Xin" description="Personal portfolio of Lucas Xin.">
   <IntroHero />
   <Timeline />
+  <section class="home-contact" aria-labelledby="home-contact-heading">
+    <h2 id="home-contact-heading" data-lang-group>
+      <span data-lang="en">Contact</span>
+      <span data-lang="zh" hidden>联系</span>
+    </h2>
+    <p data-lang-group>
+      <span data-lang="en">Interested in connecting or collaborating?</span>
+      <span data-lang="zh" hidden>如果你希望交流或合作，欢迎联系我。</span>
+    </p>
+    <a href="/contact">
+      <span data-lang-group>
+        <span data-lang="en">Contact</span>
+        <span data-lang="zh" hidden>联系</span>
+      </span>
+    </a>
+  </section>
 </BaseLayout>

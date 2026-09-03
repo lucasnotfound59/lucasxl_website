@@ -13,7 +13,7 @@ export default defineConfig({
       PORTFOLIO_CONTENT_ROOT:'./tests/fixtures/portfolio-content'
     },
     port:4321,
-    reuseExistingServer:true
+    reuseExistingServer:false
   },
   projects:[
     {name:'chromium',use:{...devices['Desktop Chrome']}},
