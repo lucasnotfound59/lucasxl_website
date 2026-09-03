@@ -1,0 +1,11 @@
+{
+  "slug": "engineering-template",
+  "kind": "project",
+  "template": "engineering",
+  "startDate": "2000-01-01",
+  "category": "Engineering",
+  "status": "draft",
+  "cover": "/images/default-cover.svg",
+  "order": 0,
+  "links": []
+}

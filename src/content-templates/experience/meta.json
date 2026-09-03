@@ -1,0 +1,11 @@
+{
+  "slug": "experience-template",
+  "kind": "experience",
+  "template": "experience",
+  "startDate": "2000-01-01",
+  "category": "Experience",
+  "status": "draft",
+  "cover": "/images/default-cover.svg",
+  "order": 0,
+  "links": []
+}

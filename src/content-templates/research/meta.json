@@ -1,0 +1,11 @@
+{
+  "slug": "research-template",
+  "kind": "project",
+  "template": "research",
+  "startDate": "2000-01-01",
+  "category": "Research",
+  "status": "draft",
+  "cover": "/images/default-cover.svg",
+  "order": 0,
+  "links": []
+}
