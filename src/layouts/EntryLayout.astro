@@ -1,0 +1,89 @@
+---
+import EntryNavigation from '../components/EntryNavigation.astro';
+import MediaFigure from '../components/MediaFigure.astro';
+import {ui} from '../i18n/ui';
+import type {PortfolioEntry} from '../lib/content';
+import BaseLayout from './BaseLayout.astro';
+
+type Props={
+  entry:PortfolioEntry;
+  previous?:PortfolioEntry;
+  next?:PortfolioEntry;
+  articleClass:string;
+  articleType:{
+    en:string;
+    zh:string;
+  };
+};
+
+const {entry,previous,next,articleClass,articleType}=Astro.props;
+const en=entry.en.data;
+const zh=entry.zh?.data??entry.en.data;
+const period=entry.meta.endDate
+  ?`${entry.meta.startDate} – ${entry.meta.endDate}`
+  :entry.meta.startDate;
+---
+
+<BaseLayout title={`${en.title} | Lucas Xin`} description={en.summary}>
+  <article class={articleClass}>
+    <header class="entry-header">
+      <p class="entry-type" data-lang-group>
+        <span data-lang="en">{articleType.en}</span>
+        <span data-lang="zh" hidden>{articleType.zh}</span>
+      </p>
+      <h1 data-lang-group>
+        <span data-lang="en">{en.title}</span>
+        <span data-lang="zh" hidden>{zh.title}</span>
+      </h1>
+      <p class="entry-period" data-lang-group>
+        <span data-lang="en">{period}</span>
+      </p>
+      {entry.meta.status&&(
+        <p class="entry-status" data-lang-group>
+          <span data-lang="en">{entry.meta.status}</span>
+        </p>
+      )}
+      <p class="entry-summary" data-lang-group>
+        <span data-lang="en">{en.summary}</span>
+        <span data-lang="zh" hidden>{zh.summary}</span>
+      </p>
+    </header>
+
+    <MediaFigure
+      src={entry.meta.cover}
+      enAlt={en.coverAlt}
+      zhAlt={zh.coverAlt}
+    />
+
+    <div class="entry-content" data-lang-group>
+      <div data-lang="en">
+        <slot name="en" />
+      </div>
+      <div data-lang="zh" hidden>
+        <slot name="zh" />
+      </div>
+    </div>
+
+    {entry.meta.links.length>0&&(
+      <nav class="entry-links" aria-labelledby="entry-links-heading">
+        <h2 id="entry-links-heading" data-lang-group>
+          <span data-lang="en">{ui.en.externalLinks}</span>
+          <span data-lang="zh" hidden>{ui.zh.externalLinks}</span>
+        </h2>
+        <ul>
+          {entry.meta.links.map(link=>(
+            <li>
+              <a href={link.url} target="_blank" rel="noreferrer">
+                <span data-lang-group>
+                  <span data-lang="en">{link.label}</span>
+                </span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    )}
+
+    <EntryNavigation previous={previous} next={next} />
+  </article>
+</BaseLayout>

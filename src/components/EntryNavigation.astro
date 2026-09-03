@@ -1,0 +1,44 @@
+---
+import type {PortfolioEntry} from '../lib/content';
+import {ui} from '../i18n/ui';
+
+type Props={
+  previous?:PortfolioEntry;
+  next?:PortfolioEntry;
+};
+
+const {previous,next}=Astro.props;
+---
+
+<nav class="entry-navigation" aria-label="Portfolio entry navigation">
+  <a href="/#timeline">
+    <span data-lang-group>
+      <span data-lang="en">{ui.en.backToTimeline}</span>
+      <span data-lang="zh" hidden>{ui.zh.backToTimeline}</span>
+    </span>
+  </a>
+  {previous&&(
+    <a href={previous.route} rel="prev">
+      <span data-lang-group>
+        <span data-lang="en">{ui.en.previous}</span>
+        <span data-lang="zh" hidden>{ui.zh.previous}</span>
+      </span>
+      <span data-lang-group>
+        <span data-lang="en">{previous.en.data.title}</span>
+        <span data-lang="zh" hidden>{previous.zh?.data.title??previous.en.data.title}</span>
+      </span>
+    </a>
+  )}
+  {next&&(
+    <a href={next.route} rel="next">
+      <span data-lang-group>
+        <span data-lang="en">{ui.en.next}</span>
+        <span data-lang="zh" hidden>{ui.zh.next}</span>
+      </span>
+      <span data-lang-group>
+        <span data-lang="en">{next.en.data.title}</span>
+        <span data-lang="zh" hidden>{next.zh?.data.title??next.en.data.title}</span>
+      </span>
+    </a>
+  )}
+</nav>

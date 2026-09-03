@@ -1,0 +1,24 @@
+---
+import {getTimelineGroups} from '../lib/content';
+import {ui} from '../i18n/ui';
+import TimelineEntry from './TimelineEntry.astro';
+
+const groups=await getTimelineGroups();
+---
+
+<section id="timeline" aria-labelledby="timeline-heading">
+  <h2 id="timeline-heading" data-lang-group>
+    <span data-lang="en">{ui.en.timeline}</span>
+    <span data-lang="zh" hidden>{ui.zh.timeline}</span>
+  </h2>
+  {groups.map(group=>(
+    <section class="timeline-year" aria-labelledby={`timeline-year-${group.year}`}>
+      <h3 id={`timeline-year-${group.year}`} data-lang-group>
+        <span data-lang="en">{group.year}</span>
+      </h3>
+      <div class="timeline-year__entries">
+        {group.entries.map(item=><TimelineEntry entry={item.entry} />)}
+      </div>
+    </section>
+  ))}
+</section>

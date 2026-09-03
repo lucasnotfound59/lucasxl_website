@@ -1,0 +1,28 @@
+---
+type Props={
+  src?:string;
+  enAlt:string;
+  zhAlt:string;
+  enCaption?:string;
+  zhCaption?:string;
+};
+
+const {
+  src='/images/default-cover.svg',
+  enAlt,
+  zhAlt,
+  enCaption,
+  zhCaption
+}=Astro.props;
+---
+
+<div class="media-figure" data-lang-group>
+  <figure data-lang="en">
+    <img src={src} alt={enAlt} />
+    {enCaption&&<figcaption>{enCaption}</figcaption>}
+  </figure>
+  <figure data-lang="zh" hidden>
+    <img src={src} alt={zhAlt} />
+    {(zhCaption??enCaption)&&<figcaption>{zhCaption??enCaption}</figcaption>}
+  </figure>
+</div>

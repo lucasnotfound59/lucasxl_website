@@ -1,0 +1,48 @@
+---
+import type {PortfolioEntry} from '../lib/content';
+import {ui} from '../i18n/ui';
+
+type Props={
+  entry:PortfolioEntry;
+};
+
+const {entry}=Astro.props;
+const en=entry.en.data;
+const zh=entry.zh?.data??entry.en.data;
+const period=entry.meta.endDate
+  ?`${entry.meta.startDate} – ${entry.meta.endDate}`
+  :entry.meta.startDate;
+const viewLabel=entry.meta.kind==='project'
+  ?{en:ui.en.viewProject,zh:ui.zh.viewProject}
+  :{en:ui.en.viewExperience,zh:ui.zh.viewExperience};
+---
+
+<a href={entry.route} class="timeline-entry" data-timeline-entry>
+  <div class="timeline-entry__cover" data-lang-group>
+    <img data-lang="en" src={entry.meta.cover} alt={en.coverAlt} loading="lazy" />
+    <img data-lang="zh" src={entry.meta.cover} alt={zh.coverAlt} loading="lazy" hidden />
+  </div>
+  <p class="timeline-entry__period" data-lang-group>
+    <span data-lang="en">{period}</span>
+  </p>
+  <p class="timeline-entry__category" data-lang-group>
+    <span data-lang="en">{entry.meta.category}</span>
+  </p>
+  {entry.meta.status&&(
+    <p class="timeline-entry__status" data-lang-group>
+      <span data-lang="en">{entry.meta.status}</span>
+    </p>
+  )}
+  <h3 data-lang-group>
+    <span data-lang="en">{en.title}</span>
+    <span data-lang="zh" hidden>{zh.title}</span>
+  </h3>
+  <p data-lang-group>
+    <span data-lang="en">{en.summary}</span>
+    <span data-lang="zh" hidden>{zh.summary}</span>
+  </p>
+  <span class="timeline-entry__action" data-lang-group>
+    <span data-lang="en">{viewLabel.en}</span>
+    <span data-lang="zh" hidden>{viewLabel.zh}</span>
+  </span>
+</a>

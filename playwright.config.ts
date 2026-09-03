@@ -8,6 +8,7 @@ export default defineConfig({
   },
   webServer:{
     command:'npm run dev -- --host 127.0.0.1',
+    env:{ASTRO_DEV_BACKGROUND:'1'},
     port:4321,
     reuseExistingServer:true
   },

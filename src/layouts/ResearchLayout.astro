@@ -1,0 +1,23 @@
+---
+import type {PortfolioEntry} from '../lib/content';
+import EntryLayout from './EntryLayout.astro';
+
+type Props={
+  entry:PortfolioEntry;
+  previous?:PortfolioEntry;
+  next?:PortfolioEntry;
+};
+
+const {entry,previous,next}=Astro.props;
+---
+
+<EntryLayout
+  entry={entry}
+  previous={previous}
+  next={next}
+  articleClass="research-project"
+  articleType={{en:'Research',zh:'研究'}}
+>
+  <slot name="en" slot="en" />
+  <slot name="zh" slot="zh" />
+</EntryLayout>

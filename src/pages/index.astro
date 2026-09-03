@@ -1,14 +1,10 @@
 ---
 import IntroHero from '../components/IntroHero.astro';
+import Timeline from '../components/Timeline.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
 <BaseLayout title="Lucas Xin" description="Personal portfolio of Lucas Xin.">
   <IntroHero />
-  <section id="timeline" aria-labelledby="timeline-heading">
-    <h2 id="timeline-heading" data-lang-group>
-      <span data-lang="en">Timeline</span>
-      <span data-lang="zh" hidden>时间线</span>
-    </h2>
-  </section>
+  <Timeline />
 </BaseLayout>

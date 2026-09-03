@@ -1,0 +1,37 @@
+---
+import {render} from 'astro:content';
+import ExperienceLayout from '../../layouts/ExperienceLayout.astro';
+import {getPortfolioEntries,type PortfolioEntry} from '../../lib/content';
+import {neighborsFor} from '../../lib/portfolio';
+
+type Props={
+  entry:PortfolioEntry;
+  previousSlug?:string;
+  nextSlug?:string;
+};
+
+export async function getStaticPaths(){
+  const allEntries=await getPortfolioEntries();
+  const experienceEntries=allEntries.filter(entry=>entry.meta.kind==='experience');
+  const paths=experienceEntries.map(entry=>{
+    const {previous,next}=neighborsFor(allEntries.map(item=>item.meta),entry.meta.slug);
+    return {
+      params:{slug:entry.meta.slug},
+      props:{entry,previousSlug:previous?.slug,nextSlug:next?.slug}
+    };
+  });
+  return paths;
+}
+
+const {entry,previousSlug,nextSlug}=Astro.props;
+const allEntries=await getPortfolioEntries();
+const previous=allEntries.find(item=>item.meta.slug===previousSlug);
+const next=allEntries.find(item=>item.meta.slug===nextSlug);
+const {Content:EnglishContent}=await render(entry.en);
+const {Content:ChineseContent}=await render(entry.zh??entry.en);
+---
+
+<ExperienceLayout entry={entry} previous={previous} next={next}>
+  <EnglishContent slot="en" />
+  <ChineseContent slot="zh" />
+</ExperienceLayout>
