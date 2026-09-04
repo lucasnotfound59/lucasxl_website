@@ -13,14 +13,14 @@ export type ContactConfig={
 export const profile:Record<'en'|'zh',LocalizedProfile>={
   en:{
     name:'Lucas Xin',
-    identity:'Student researcher and builder',
-    introduction:'Exploring artificial intelligence, robotics, and computational research.',
+    identity:'',
+    introduction:'',
     about:[]
   },
   zh:{
     name:'Lucas Xin',
-    identity:'学生研究者与创作者',
-    introduction:'探索人工智能、机器人与计算研究。',
+    identity:'',
+    introduction:'',
     about:[]
   }
 };

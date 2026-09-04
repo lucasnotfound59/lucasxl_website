@@ -80,25 +80,26 @@ Create a Pages application through **Workers & Pages → Create application → 
 | Build command | `npm run build` |
 | Build output directory | `dist` |
 
-After the first successful deployment, Cloudflare provides a `pages.dev` URL for structural review. Pushes or pull requests on non-production branches should create preview deployments; only `main` updates production.
+After the first successful deployment, Cloudflare provides a `pages.dev` URL for structural review. Pushes or pull requests on non-production branches should create preview deployments. `main` is production and each push to it triggers the Pages deployment for `lucasxl.com`.
 
-## Content-release gate and custom domain handoff
+## Production release and future-content gate
 
-Do **not** bind `lucasxl.com` until all of the following are true:
+The blank portfolio shell is approved for production at `lucasxl.com` now. The current custom-domain state is `lucasxl.com` bound with active HTTPS/TLS. `www.lucasxl.com` is not configured yet; it can be added later under Cloudflare **Custom domains** and redirected to the apex domain.
 
-- verified profile copy is present;
-- at least one timeline entry is `published`;
-- the approved public email address and public GitHub URL are configured;
-- `git diff --check`, `npm run validate:content`, `npm test`, `npm run build`, and `npm run test:e2e` all pass.
+Before each release, run the complete local release gate:
 
-The custom-domain release is a separate follow-up after publication-approved content is supplied. In that follow-up:
+```sh
+git diff --check
+npm run validate:content
+npm test
+npm run build
+npm run test:e2e
+```
 
-1. Replace the draft author examples with verified project and experience directories.
+Biography copy, project and experience entries, the public email address, and the public GitHub URL remain gated until they have been verified and approved for publication. For a future content release:
+
+1. Replace the draft author examples with verified project and experience directories, and mark only approved entries as `published`.
 2. Add verified English and Chinese profile content.
 3. Configure the approved public email and GitHub values.
-4. Rerun content validation, unit tests, production build, browser tests, mobile tests, and accessibility tests.
-5. Add `lucasxl.com` and `www.lucasxl.com` under Cloudflare **Custom domains**.
-6. Make `lucasxl.com` canonical and redirect `www.lucasxl.com` to it.
-7. Verify active TLS and HTTPS before announcing publication.
-
-Until then, keep the custom domains unbound and use the Cloudflare preview deployment solely for structural review.
+4. Rerun the complete local release gate above before pushing the approved content to `main`.
+5. If `www.lucasxl.com` is added, redirect it to canonical `lucasxl.com` and verify HTTPS/TLS before announcing that hostname.

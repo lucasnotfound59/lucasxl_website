@@ -53,3 +53,12 @@ test('resume contains a heading and no download link',async({page})=>{
   await expect(page.getByRole('heading',{level:1})).toContainText('Resume');
   await expect(page.getByRole('link',{name:/download/i})).toHaveCount(0);
 });
+
+test('blank shell does not publish unverified biography',async({page})=>{
+  await page.goto('/');
+  await expect(page.getByText('Student researcher and builder')).toHaveCount(0);
+  await expect(page.getByText('Exploring artificial intelligence, robotics, and computational research.')).toHaveCount(0);
+  await expect(page.locator('.intro-hero>p')).toHaveCount(0);
+  await expect(page.getByRole('heading',{name:'Lucas Xin',level:1})).toBeVisible();
+  await expect(page.getByRole('heading',{name:'Timeline',level:2})).toBeVisible();
+});
