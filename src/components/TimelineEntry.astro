@@ -22,27 +22,32 @@ const viewLabel=entry.meta.kind==='project'
     <img data-lang="en" src={entry.meta.cover} alt={en.coverAlt} loading="lazy" />
     <img data-lang="zh" src={entry.meta.cover} alt={zh.coverAlt} loading="lazy" hidden />
   </div>
-  <p class="timeline-entry__period" data-lang-group>
-    <span data-lang="en">{period}</span>
-  </p>
-  <p class="timeline-entry__category" data-lang-group>
-    <span data-lang="en">{entry.meta.category}</span>
-  </p>
-  {entry.meta.status&&(
-    <p class="timeline-entry__status" data-lang-group>
-      <span data-lang="en">{entry.meta.status}</span>
+  <div class="timeline-entry__meta">
+    <p class="timeline-entry__period" data-lang-group>
+      <span data-lang="en">{period}</span>
     </p>
-  )}
-  <h4 data-lang-group>
+    <p class="timeline-entry__category" data-lang-group>
+      <span data-lang="en">{entry.meta.category}</span>
+    </p>
+    {entry.meta.status&&(
+      <p class="timeline-entry__status" data-lang-group>
+        <span data-lang="en">{entry.meta.status}</span>
+      </p>
+    )}
+  </div>
+  <h3 data-lang-group>
     <span data-lang="en">{en.title}</span>
     <span data-lang="zh" hidden>{zh.title}</span>
-  </h4>
-  <p data-lang-group>
+  </h3>
+  <p class="timeline-entry__summary" data-lang-group>
     <span data-lang="en">{en.summary}</span>
     <span data-lang="zh" hidden>{zh.summary}</span>
   </p>
-  <span class="timeline-entry__action" data-lang-group>
-    <span data-lang="en">{viewLabel.en}</span>
-    <span data-lang="zh" hidden>{viewLabel.zh}</span>
+  <span class="timeline-entry__action">
+    <span data-lang-group>
+      <span data-lang="en">{viewLabel.en}</span>
+      <span data-lang="zh" hidden>{viewLabel.zh}</span>
+    </span>
+    <span class="timeline-entry__arrow" aria-hidden="true">→</span>
   </span>
 </a>

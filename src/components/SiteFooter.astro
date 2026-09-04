@@ -4,6 +4,11 @@ const year=new Date().getFullYear();
 ---
 
 <footer class="site-footer">
-  <p>{profile.en.name} © {year}</p>
-  <a href="#top"><span data-lang-group><span data-lang="en">Back to top</span><span data-lang="zh" hidden>返回顶部</span></span></a>
+  <div class="site-footer__inner">
+    <div>
+      <div class="site-footer__name" aria-hidden="true">{profile.en.name}</div>
+      <p class="site-footer__legal">{profile.en.name} © {year}</p>
+    </div>
+    <a href="#top"><span data-lang-group><span data-lang="en">Back to top</span><span data-lang="zh" hidden>返回顶部</span></span></a>
+  </div>
 </footer>

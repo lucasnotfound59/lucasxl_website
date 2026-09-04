@@ -20,13 +20,188 @@ const canonicalURL=new URL(Astro.url.pathname,Astro.site);
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalURL} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Noto+Sans+SC:wght@400;500;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+    <meta name="theme-color" content="#F3EEE3" />
     <title>{title}</title>
   </head>
   <body>
+    <canvas id="bg" aria-hidden="true"></canvas>
     <SiteHeader />
     <main id="main-content">
       <slot />
     </main>
     <SiteFooter />
+<script>
+/* 鼠标互动网点背景（尊重 prefers-reduced-motion） */
+(function () {
+  var canvasEl = document.getElementById('bg') as HTMLCanvasElement | null;
+  if (!canvasEl) return;
+  var canvas: HTMLCanvasElement = canvasEl;
+  var ctxEl = canvas.getContext('2d');
+  if (!ctxEl) return;
+  var ctx: CanvasRenderingContext2D = ctxEl;
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  type Dot = { bx: number; by: number; x: number; y: number; vx: number; vy: number; color: string; size: number };
+
+  var COLORS: [string, string, string, string] = ['#2A4FDE', '#2A4FDE', '#E23D2F', '#FFC824'];
+  var DPR = Math.min(window.devicePixelRatio || 1, 2);
+  var gap = 30;
+  var W = 0, H = 0, cols = 0, rows = 0;
+  var dots: Dot[] = [];
+  var links: [number, number][] = [];
+  var mouse = { x: -9999, y: -9999, active: false };
+  var running = false;
+  var rafId = 0;
+
+  function build(): void {
+    dots = [];
+    links = [];
+    cols = Math.ceil(W / gap) + 1;
+    rows = Math.ceil(H / gap) + 1;
+    var seed = 7;
+    function rand(): number { seed = (seed * 16807) % 2147483647; return seed / 2147483647; }
+    for (var r = 0; r < rows; r++) {
+      for (var c = 0; c < cols; c++) {
+        var x = c * gap + (rand() - 0.5) * 7;
+        var y = r * gap + (rand() - 0.5) * 7;
+        var pick = rand();
+        var color = pick < 0.72 ? COLORS[0] : (pick < 0.88 ? COLORS[2] : COLORS[3]);
+        dots.push({ bx: x, by: y, x: x, y: y, vx: 0, vy: 0, color: color, size: rand() < 0.1 ? 2.1 : 1.4 });
+      }
+    }
+    for (var r2 = 0; r2 < rows; r2++) {
+      for (var c2 = 0; c2 < cols; c2++) {
+        var i = r2 * cols + c2;
+        if (c2 + 1 < cols) links.push([i, i + 1]);
+        if (r2 + 1 < rows) links.push([i, i + cols]);
+      }
+    }
+  }
+
+  function resize(): void {
+    W = window.innerWidth;
+    H = window.innerHeight;
+    canvas.width = Math.floor(W * DPR);
+    canvas.height = Math.floor(H * DPR);
+    canvas.style.width = W + 'px';
+    canvas.style.height = H + 'px';
+    ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+    build();
+    draw();
+  }
+
+  function step(): number {
+    var R = 150, R2 = R * R, maxV = 0;
+    for (var d of dots) {
+      var dx = d.x - mouse.x, dy = d.y - mouse.y;
+      var dist2 = dx * dx + dy * dy;
+      if (mouse.active && dist2 < R2 && dist2 > 0.01) {
+        var dist = Math.sqrt(dist2);
+        var f = (R - dist) / R;
+        var push = f * f * 2.2;
+        d.vx += (dx / dist) * push;
+        d.vy += (dy / dist) * push;
+      }
+      d.vx += (d.bx - d.x) * 0.04;
+      d.vy += (d.by - d.y) * 0.04;
+      d.vx *= 0.85;
+      d.vy *= 0.85;
+      d.x += d.vx;
+      d.y += d.vy;
+      var v = d.vx * d.vx + d.vy * d.vy;
+      if (v > maxV) maxV = v;
+    }
+    return maxV;
+  }
+
+  function draw(): void {
+    ctx.clearRect(0, 0, W, H);
+    var R = 150, R2 = R * R;
+    var mx = mouse.x, my = mouse.y, act = mouse.active;
+
+    ctx.strokeStyle = '#2A4FDE';
+    ctx.lineWidth = 1;
+    for (var pair of links) {
+      var a = dots[pair[0]]!, b = dots[pair[1]]!;
+      var da = (a.x - mx) * (a.x - mx) + (a.y - my) * (a.y - my);
+      var db = (b.x - mx) * (b.x - mx) + (b.y - my) * (b.y - my);
+      var nearL = act && (da < R2 || db < R2);
+      ctx.globalAlpha = nearL ? 0.15 : 0.05;
+      ctx.beginPath();
+      ctx.moveTo(a.x, a.y);
+      ctx.lineTo(b.x, b.y);
+      ctx.stroke();
+    }
+
+    for (var d of dots) {
+      var dx = d.x - mx, dy = d.y - my;
+      var near = act && dx * dx + dy * dy < R2;
+      ctx.globalAlpha = near ? 0.5 : 0.22;
+      ctx.fillStyle = d.color;
+      ctx.beginPath();
+      ctx.arc(d.x, d.y, d.size * (near ? 1.4 : 1), 0, 6.2832);
+      ctx.fill();
+    }
+    ctx.globalAlpha = 1;
+  }
+
+  function loop(): void {
+    var maxV = step();
+    draw();
+    if (maxV < 0.01 && !mouse.active) {
+      running = false;
+      return;
+    }
+    rafId = requestAnimationFrame(loop);
+  }
+
+  function wake(): void {
+    if (running || reduceMotion) return;
+    running = true;
+    rafId = requestAnimationFrame(loop);
+  }
+
+  function onMove(e: PointerEvent): void {
+    mouse.x = e.clientX;
+    mouse.y = e.clientY;
+    mouse.active = true;
+    wake();
+  }
+
+  function onLeave(): void {
+    mouse.active = false;
+  }
+
+  function onDown(e: PointerEvent): void {
+    var bx = e.clientX, by = e.clientY, R = 240;
+    for (var d of dots) {
+      var dx = d.x - bx, dy = d.y - by;
+      var dist = Math.sqrt(dx * dx + dy * dy);
+      if (dist < R && dist > 0.01) {
+        var f = (1 - dist / R) * 8;
+        d.vx += (dx / dist) * f;
+        d.vy += (dy / dist) * f;
+      }
+    }
+    wake();
+  }
+
+  resize();
+
+  if (reduceMotion) return;
+
+  window.addEventListener('pointermove', onMove, { passive: true });
+  window.addEventListener('pointerdown', onDown, { passive: true });
+  window.addEventListener('pointerleave', onLeave);
+  window.addEventListener('blur', onLeave);
+  window.addEventListener('resize', function () { resize(); wake(); });
+  document.addEventListener('visibilitychange', function () {
+    if (document.hidden) { running = false; cancelAnimationFrame(rafId); }
+  });
+})();
+</script>
   </body>
 </html>
