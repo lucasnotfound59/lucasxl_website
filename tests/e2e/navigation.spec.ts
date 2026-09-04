@@ -23,7 +23,7 @@ test('home ends with a localized contact call to action before the shared footer
     [...body.querySelectorAll('.intro-hero,#timeline,.home-contact,.site-footer')]
       .map(element=>element.classList.contains('intro-hero')
         ?'intro'
-        :element.id||element.className)
+        :element.id||element.classList.item(0))
   );
   expect(sections).toEqual(['intro','timeline','home-contact','site-footer']);
 
