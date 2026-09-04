@@ -22,7 +22,15 @@ const canonicalURL=new URL(Astro.url.pathname,Astro.site);
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Noto+Sans+SC:wght@400;500;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+    <script is:inline>
+      window.addEventListener('load',function(){
+        var fonts=document.createElement('link');
+        fonts.rel='stylesheet';
+        fonts.href='https://fonts.googleapis.com/css2?family=Archivo+Black&family=Noto+Sans+SC:wght@400;500;700;900&family=Space+Mono:wght@400;700&display=swap';
+        document.head.appendChild(fonts);
+      },{once:true});
+    </script>
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Noto+Sans+SC:wght@400;500;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" /></noscript>
     <meta name="theme-color" content="#F3EEE3" />
     <title>{title}</title>
   </head>
