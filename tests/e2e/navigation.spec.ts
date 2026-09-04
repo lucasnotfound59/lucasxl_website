@@ -23,7 +23,7 @@ test('home ends with a localized contact call to action before the shared footer
     [...body.querySelectorAll('.intro-hero,#timeline,.home-contact,.site-footer')]
       .map(element=>element.classList.contains('intro-hero')
         ?'intro'
-        :element.id||element.className)
+        :element.id||element.classList.item(0))
   );
   expect(sections).toEqual(['intro','timeline','home-contact','site-footer']);
 
@@ -58,7 +58,7 @@ test('blank shell does not publish unverified biography',async({page})=>{
   await page.goto('/');
   await expect(page.getByText('Student researcher and builder')).toHaveCount(0);
   await expect(page.getByText('Exploring artificial intelligence, robotics, and computational research.')).toHaveCount(0);
-  await expect(page.locator('.intro-hero>p')).toHaveCount(0);
+  await expect(page.locator('.intro-hero__copy>p')).toHaveCount(0);
   await expect(page.getByRole('heading',{name:'Lucas Xin',level:1})).toBeVisible();
   await expect(page.getByRole('heading',{name:'Timeline',level:2})).toBeVisible();
 });

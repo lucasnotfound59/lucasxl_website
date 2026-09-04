@@ -11,14 +11,14 @@ const {previous,next}=Astro.props;
 ---
 
 <nav class="entry-navigation" aria-label="Portfolio entry navigation">
-  <a href="/#timeline">
+  <a class="entry-navigation__back" href="/#timeline">
     <span data-lang-group>
       <span data-lang="en">{ui.en.backToTimeline}</span>
       <span data-lang="zh" hidden>{ui.zh.backToTimeline}</span>
     </span>
   </a>
   {previous&&(
-    <a href={previous.route} rel="prev">
+    <a class="entry-navigation__step" href={previous.route} rel="prev">
       <span data-lang-group>
         <span data-lang="en">{ui.en.previous}</span>
         <span data-lang="zh" hidden>{ui.zh.previous}</span>
@@ -30,7 +30,7 @@ const {previous,next}=Astro.props;
     </a>
   )}
   {next&&(
-    <a href={next.route} rel="next">
+    <a class="entry-navigation__step" href={next.route} rel="next">
       <span data-lang-group>
         <span data-lang="en">{ui.en.next}</span>
         <span data-lang="zh" hidden>{ui.zh.next}</span>
