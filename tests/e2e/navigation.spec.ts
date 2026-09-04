@@ -17,20 +17,20 @@ test('timeline cards navigate instead of expanding inline',async({page})=>{
   await expect(page.locator('article.research-project')).toBeVisible();
 });
 
-test('home ends with a localized contact call to action before the shared footer',async({page})=>{
+test('home composes previews in the confirmed order',async({page})=>{
   await page.goto('/');
-  const sections=await page.locator('body').evaluate(body=>
-    [...body.querySelectorAll('.intro-hero,#timeline,.home-contact,.site-footer')]
-      .map(element=>element.classList.contains('intro-hero')
-        ?'intro'
-        :element.id||element.classList.item(0))
+  const sectionIds=await page.locator('main#main-content>section').evaluateAll(elements=>
+    elements.map(element=>element.id)
   );
-  expect(sections).toEqual(['intro','timeline','home-contact','site-footer']);
+  expect(sectionIds).toEqual(['welcome','about','timeline','contact']);
 
-  const contactCta=page.locator('.home-contact');
-  await expect(contactCta.getByRole('link',{name:'Contact'})).toHaveAttribute('href','/contact');
-  await page.getByRole('button',{name:'中'}).click();
-  await expect(contactCta.getByRole('link',{name:'联系'})).toBeVisible();
+  const about=page.locator('#about');
+  await expect(about.getByRole('heading',{name:'About',level:2})).toBeVisible();
+  await expect(about.getByRole('link',{name:'Read more'})).toHaveAttribute('href','/about');
+
+  const contact=page.locator('#contact');
+  await expect(contact.getByRole('heading',{name:'Contact',level:2})).toBeVisible();
+  await expect(contact.getByRole('link',{name:'Contact me'})).toHaveAttribute('href','/contact');
 });
 
 test('generated templates preserve cross-kind navigation and Chinese fallback',async({page})=>{
@@ -58,6 +58,7 @@ test('blank shell does not publish unverified biography',async({page})=>{
   await page.goto('/');
   await expect(page.getByText('Student researcher and builder')).toHaveCount(0);
   await expect(page.getByText('Exploring artificial intelligence, robotics, and computational research.')).toHaveCount(0);
+  await expect(page.locator('#about [data-about-preview-copy]')).toHaveCount(0);
   await expect(page.locator('.intro-hero__copy>p')).toHaveCount(0);
   await expect(page.getByRole('heading',{name:'Lucas Xin',level:1})).toBeVisible();
   await expect(page.getByRole('heading',{name:'Timeline',level:2})).toBeVisible();

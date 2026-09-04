@@ -1,4 +1,6 @@
 ---
+import AboutPreview from '../components/AboutPreview.astro';
+import ContactPreview from '../components/ContactPreview.astro';
 import IntroHero from '../components/IntroHero.astro';
 import Timeline from '../components/Timeline.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
@@ -6,21 +8,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 <BaseLayout title="Lucas Xin" description="Personal portfolio of Lucas Xin.">
   <IntroHero />
+  <AboutPreview />
   <Timeline />
-  <section class="home-contact page-section" aria-labelledby="home-contact-heading">
-    <h2 id="home-contact-heading" class="page-title" data-lang-group>
-      <span data-lang="en">Contact</span>
-      <span data-lang="zh" hidden>联系</span>
-    </h2>
-    <p data-lang-group>
-      <span data-lang="en">Interested in connecting or collaborating?</span>
-      <span data-lang="zh" hidden>如果你希望交流或合作，欢迎联系我。</span>
-    </p>
-    <a class="btn btn--primary" href="/contact">
-      <span data-lang-group>
-        <span data-lang="en">Contact</span>
-        <span data-lang="zh" hidden>联系</span>
-      </span>
-    </a>
-  </section>
+  <ContactPreview />
 </BaseLayout>

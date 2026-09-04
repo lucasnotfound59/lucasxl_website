@@ -6,7 +6,7 @@ const hasIdentity=profile.en.identity.trim().length>0;
 const hasIntroduction=profile.en.introduction.trim().length>0;
 ---
 
-<section class="intro-hero" aria-labelledby="intro-name">
+<section id="welcome" class="intro-hero" aria-labelledby="intro-name">
   <div class="intro-hero__copy">
     {hasIdentity&&(
       <p class="intro-hero__eyebrow" data-lang-group>
@@ -26,8 +26,8 @@ const hasIntroduction=profile.en.introduction.trim().length>0;
     )}
     <nav class="intro-hero__links" aria-label="Introduction links">
       <a class="btn btn--primary" href="#timeline"><span data-lang-group><span data-lang="en">{ui.en.timeline}</span><span data-lang="zh" hidden>{ui.zh.timeline}</span></span></a>
-      <a class="btn" href="/about"><span data-lang-group><span data-lang="en">{ui.en.about}</span><span data-lang="zh" hidden>{ui.zh.about}</span></span></a>
-      <a class="btn" href="/contact"><span data-lang-group><span data-lang="en">{ui.en.contact}</span><span data-lang="zh" hidden>{ui.zh.contact}</span></span></a>
+      <a class="btn" href="#about"><span data-lang-group><span data-lang="en">{ui.en.about}</span><span data-lang="zh" hidden>{ui.zh.about}</span></span></a>
+      <a class="btn" href="#contact"><span data-lang-group><span data-lang="en">{ui.en.contact}</span><span data-lang="zh" hidden>{ui.zh.contact}</span></span></a>
     </nav>
   </div>
   <div class="hero-art" aria-hidden="true">

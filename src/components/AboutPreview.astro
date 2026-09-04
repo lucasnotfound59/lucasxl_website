@@ -1,0 +1,27 @@
+---
+import {profile} from '../data/profile';
+import {ui} from '../i18n/ui';
+
+const englishPreview=profile.en.about[0]?.trim()??'';
+const chinesePreview=profile.zh.about[0]?.trim()||englishPreview;
+const hasAboutPreview=englishPreview.length>0;
+---
+
+<section id="about" class="home-preview page-section" aria-labelledby="about-preview-heading">
+  <h2 id="about-preview-heading" class="page-title" data-lang-group>
+    <span data-lang="en">{ui.en.about}</span>
+    <span data-lang="zh" hidden>{ui.zh.about}</span>
+  </h2>
+  {hasAboutPreview&&(
+    <p class="home-preview__copy" data-about-preview-copy data-lang-group>
+      <span data-lang="en">{englishPreview}</span>
+      <span data-lang="zh" hidden>{chinesePreview}</span>
+    </p>
+  )}
+  <a class="btn" href="/about">
+    <span data-lang-group>
+      <span data-lang="en">{ui.en.readMore}</span>
+      <span data-lang="zh" hidden>{ui.zh.readMore}</span>
+    </span>
+  </a>
+</section>
