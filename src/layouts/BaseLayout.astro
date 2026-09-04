@@ -50,11 +50,12 @@ const canonicalURL=new URL(Astro.url.pathname,Astro.site);
   var ctxEl = canvas.getContext('2d');
   if (!ctxEl) return;
   var ctx: CanvasRenderingContext2D = ctxEl;
-  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
+  var reduceMotion = motionPreference.matches;
 
   type Dot = { bx: number; by: number; x: number; y: number; vx: number; vy: number; color: string; size: number };
 
-  var COLORS: [string, string, string, string] = ['#2A4FDE', '#2A4FDE', '#E23D2F', '#FFC824'];
+  var COLORS: [string, string, string, string] = ['#2A4FDE', '#2A4FDE', '#BD2E24', '#FFC824'];
   var DPR = Math.min(window.devicePixelRatio || 1, 2);
   var gap = 30;
   var W = 0, H = 0, cols = 0, rows = 0;
@@ -159,7 +160,7 @@ const canonicalURL=new URL(Astro.url.pathname,Astro.site);
   function loop(): void {
     var maxV = step();
     draw();
-    if (maxV < 0.01 && !mouse.active) {
+    if (maxV < 0.01) {
       running = false;
       return;
     }
@@ -173,6 +174,7 @@ const canonicalURL=new URL(Astro.url.pathname,Astro.site);
   }
 
   function onMove(e: PointerEvent): void {
+    if (reduceMotion) return;
     mouse.x = e.clientX;
     mouse.y = e.clientY;
     mouse.active = true;
@@ -184,6 +186,7 @@ const canonicalURL=new URL(Astro.url.pathname,Astro.site);
   }
 
   function onDown(e: PointerEvent): void {
+    if (reduceMotion) return;
     var bx = e.clientX, by = e.clientY, R = 240;
     for (var d of dots) {
       var dx = d.x - bx, dy = d.y - by;
@@ -199,7 +202,16 @@ const canonicalURL=new URL(Astro.url.pathname,Astro.site);
 
   resize();
 
-  if (reduceMotion) return;
+  motionPreference.addEventListener('change',function (event) {
+    reduceMotion = event.matches;
+    if (reduceMotion) {
+      running = false;
+      mouse.active = false;
+      cancelAnimationFrame(rafId);
+      build();
+      draw();
+    }
+  });
 
   window.addEventListener('pointermove', onMove, { passive: true });
   window.addEventListener('pointerdown', onDown, { passive: true });

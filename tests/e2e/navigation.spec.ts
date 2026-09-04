@@ -58,7 +58,7 @@ test('blank shell does not publish unverified biography',async({page})=>{
   await page.goto('/');
   await expect(page.getByText('Student researcher and builder')).toHaveCount(0);
   await expect(page.getByText('Exploring artificial intelligence, robotics, and computational research.')).toHaveCount(0);
-  await expect(page.locator('.intro-hero>p')).toHaveCount(0);
+  await expect(page.locator('.intro-hero__copy>p')).toHaveCount(0);
   await expect(page.getByRole('heading',{name:'Lucas Xin',level:1})).toBeVisible();
   await expect(page.getByRole('heading',{name:'Timeline',level:2})).toBeVisible();
 });
