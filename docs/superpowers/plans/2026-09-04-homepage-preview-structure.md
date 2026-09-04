@@ -431,11 +431,19 @@ Inspect `/` at 1440×1000 and 390×844. Confirm:
 - Timeline cards remain usable on mobile;
 - the Riso visual system remains intact.
 
-- [ ] **Step 6: Request code review before deployment**
+- [ ] **Step 6: Record the production-gate evidence**
 
-Review the diff from `origin/main` to `HEAD`. Deployment is allowed only when the reviewer reports no Critical or Important findings.
+Write the exact commands, pass counts, build diagnostics, and visual-inspection result to this task's implementation report. Do not push, merge, or deploy from this task.
 
-- [ ] **Step 7: Push, open a PR, and verify Cloudflare Pages**
+Expected: the report contains enough evidence for the task reviewer and final whole-branch reviewer to evaluate deployment readiness.
+
+---
+
+## Post-task Integration
+
+After all three tasks pass their task-scoped reviews, run the required whole-branch review. Continue only when that review reports no Critical or Important findings.
+
+Push the reviewed branch and open a PR:
 
 Run:
 
@@ -444,7 +452,7 @@ git push -u origin feature/homepage-preview-structure
 gh pr create --base main --head feature/homepage-preview-structure --title "Add homepage About and Contact previews" --body "Implements the approved homepage preview structure while preserving standalone pages, bilingual behavior, detail routes, and blank-content safeguards."
 ```
 
-After approval, merge the PR:
+After the PR's Cloudflare preview check passes, merge the PR:
 
 ```bash
 gh pr merge --merge
