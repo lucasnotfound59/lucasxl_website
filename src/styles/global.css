@@ -450,7 +450,7 @@ main {
   padding: 2px 9px;
   background: var(--yellow);
 }
-.timeline-entry h3 {
+.timeline-entry h4 {
   grid-area: title;
   margin: 0;
   font-size: 1.3rem;
@@ -818,4 +818,3 @@ main {
     transition-duration: .01ms !important;
   }
 }
-
