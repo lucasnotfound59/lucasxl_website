@@ -25,12 +25,12 @@ test('timeline cards navigate instead of expanding inline',async({page})=>{
   await expect(page.locator('article.research-project')).toBeVisible();
 });
 
-test('home composes previews in the confirmed order',async({page})=>{
+test('home composes previews and footer in the confirmed order',async({page})=>{
   await page.goto('/');
-  const sectionIds=await page.locator('main#main-content>section').evaluateAll(elements=>
-    elements.map(element=>element.id)
+  const compositionIds=await page.locator('main#main-content>section,.site-footer').evaluateAll(elements=>
+    elements.map(element=>element.id||element.className)
   );
-  expect(sectionIds).toEqual(['welcome','about','timeline','contact']);
+  expect(compositionIds).toEqual(['welcome','about','timeline','contact','site-footer']);
 
   const about=page.locator('#about');
   await expect(about.getByRole('heading',{name:'About',level:2})).toBeVisible();
