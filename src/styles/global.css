@@ -197,6 +197,21 @@ main {
 }
 
 /* ============ 首屏 ============ */
+#welcome,
+#about,
+#timeline,
+#contact {
+  scroll-margin-top: 6rem;
+}
+
+.home-preview__copy {
+  max-width: 46rem;
+}
+
+.home-preview .btn {
+  margin-top: 1.25rem;
+}
+
 .intro-hero {
   display: grid;
   grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr);
@@ -788,6 +803,13 @@ main {
 }
 
 @media (max-width: 720px) {
+  #welcome,
+  #about,
+  #timeline,
+  #contact {
+    scroll-margin-top: 10rem;
+  }
+
   .site-header__inner {
     flex-direction: column;
     align-items: stretch;

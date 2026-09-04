@@ -1,5 +1,13 @@
 import {expect,test} from '@playwright/test';
 
+test('header routes visitors through homepage previews',async({page})=>{
+  await page.goto('/');
+  const hrefs=await page.locator('.site-nav__links>a').evaluateAll(links=>
+    links.map(link=>link.getAttribute('href'))
+  );
+  expect(hrefs).toEqual(['/#welcome','/#about','/#timeline','/resume','/#contact']);
+});
+
 test('timeline cards navigate instead of expanding inline',async({page})=>{
   await page.goto('/');
   const timeline=page.locator('#timeline');

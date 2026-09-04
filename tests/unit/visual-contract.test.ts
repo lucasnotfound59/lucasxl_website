@@ -28,3 +28,13 @@ it('lets the canvas animation sleep after movement settles',()=>{
   expect(layout).toMatch(/if \(maxV < 0\.01\) \{/);
   expect(layout).not.toContain('maxV < 0.01 && !mouse.active');
 });
+
+it('offsets every homepage anchor below the sticky header',()=>{
+  const css=readFileSync(resolve('src/styles/global.css'),'utf8');
+  expect(css).toMatch(/#welcome,\s*#about,\s*#timeline,\s*#contact\s*\{[^}]*scroll-margin-top:/s);
+});
+
+it('keeps homepage anchors clear of the stacked mobile header',()=>{
+  const css=readFileSync(resolve('src/styles/global.css'),'utf8');
+  expect(css).toMatch(/@media \(max-width: 720px\) \{[\s\S]*#welcome,\s*#about,\s*#timeline,\s*#contact\s*\{[^}]*scroll-margin-top:\s*10rem;/);
+});
