@@ -12,7 +12,22 @@
 2. **项目角色与研究过程**：依据项目记录介绍独立研究背景，以及题库、问卷与模型评测、分析和研究展示的项目流程。个人贡献与整个项目产物分开描述；不把文件的存在推断为作者独自完成全部工作，不添加未经确认的职责或导师身份。
 3. **实验设计**：400 道判断题、四类题型、五档信心报告、每题四次模型采样；46 名人类参与者、1,647 条有效回答、20 个模型配置。明确人类答中文、模型答英文，不能称为完全相同的实验条件。
 4. **关键发现**：以少量可核验数字和通俗解释说明准确率、信心与错误的关系，以及虚构题上的表现。模型结论只限本题库和实际被测配置。
-5. **局限与反思**：语言差异、模型准确率天花板、样本范围，以及行为指标与内部机制之间的解释边界。未来方向标为尚未开展，不描述冻结中的后续研究为已完成成果。
+5. **局限与反思**：语言差异、模型准确率天花板、样本范围，以及行为指标与内部机制之间的解释边界。
+6. **What I Can Do Next / 下一步探索**：按用户补充，列出以下三项未来计划。它们不属于当前研究成果，也不代表授权执行新实验或修改原始研究文件。
+
+### 下一步探索：双语文案方向
+
+- **Investigate AI hallucinations / 继续研究 AI 幻觉**
+  - EN: Investigate when AI systems produce unsupported answers and how their reported confidence relates to those errors.
+  - 中：继续研究 AI 何时会生成缺乏依据的回答，以及它表达的信心与这些错误之间的关系。
+- **Improve the experimental design / 改进实验设计**
+  - EN: Explore a follow-up task in which respondents answer first and then explain their reasoning, to examine whether a correct answer is supported by understanding. The explanation-scoring criteria still need to be developed; a fluent explanation alone would not establish understanding.
+  - 中：探索让作答者先答题、再解释答案的后续任务，考察正确回答是否有理解作为支撑。解释的评价标准仍需设计，不能仅凭解释流畅就认定真正理解。
+- **Build and connect at a Stanford hackathon / 在斯坦福 hackathon 中实践与交流**
+  - EN: Aim to participate in a hackathon at Stanford, build alongside others, and meet more people with shared interests.
+  - 中：计划参加在斯坦福举办的 hackathon，和其他参与者一起动手实践，认识更多志同道合的人。
+
+不添加尚未提供的赛事名称、日期、录取或报名状态，也不暗示斯坦福学籍、任职或正式合作关系。
 
 ## 素材与证据
 
