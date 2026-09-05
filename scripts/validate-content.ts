@@ -4,29 +4,29 @@ import {z} from 'zod';
 
 const requiredHeadings={
   research:[
-    'Research Question',
-    'Why It Matters',
-    'My Role',
-    'Methodology',
-    'Results and Evidence',
-    'Limitations',
-    'Reflection and Next Steps'
+    ['Research Question'],
+    ['Why It Matters'],
+    ['My Role','My Role and Research Process'],
+    ['Methodology','Study Design'],
+    ['Results and Evidence','Findings and Evidence'],
+    ['Limitations','Limitations and Reflection'],
+    ['Reflection and Next Steps','What I Can Do Next']
   ],
   engineering:[
-    'Problem and Constraints',
-    'My Responsibilities',
-    'System Overview',
-    'Implementation Process',
-    'Testing and Iterations',
-    'Results',
-    'Failures and Lessons'
+    ['Problem and Constraints'],
+    ['My Responsibilities'],
+    ['System Overview'],
+    ['Implementation Process'],
+    ['Testing and Iterations'],
+    ['Results'],
+    ['Failures and Lessons']
   ],
   experience:[
-    'Context',
-    'Participation',
-    'My Contribution',
-    'Selected Work',
-    'Learning and Reflection'
+    ['Context'],
+    ['Participation'],
+    ['My Contribution'],
+    ['Selected Work'],
+    ['Learning and Reflection']
   ]
 } as const;
 
@@ -60,9 +60,9 @@ for(const root of roots){
       continue;
     }
     const markdown=readFileSync(enPath,'utf8');
-    for(const heading of requiredHeadings[meta.template]){
-      if(!markdown.includes(`## ${heading}`)){
-        errors.push(`${enPath}: missing heading "## ${heading}"`);
+    for(const aliases of requiredHeadings[meta.template]){
+      if(!aliases.some(heading=>markdown.includes(`## ${heading}`))){
+        errors.push(`${enPath}: missing heading ${aliases.map(heading=>`"## ${heading}"`).join(' or ')}`);
       }
     }
     const coverPath=join('public',meta.cover.replace(/^\//,''));
