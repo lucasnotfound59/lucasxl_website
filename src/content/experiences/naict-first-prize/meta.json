@@ -1,0 +1,12 @@
+{
+  "slug": "naict-first-prize",
+  "kind": "experience",
+  "template": "experience",
+  "category": "Awards",
+  "status": "published",
+  "startDate": "2026-08",
+  "endDate": "2026-08",
+  "cover": "/images/default-cover.svg",
+  "order": 7,
+  "links": []
+}

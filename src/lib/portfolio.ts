@@ -10,6 +10,7 @@ export type EntryMeta={
   template:TemplateKind;
   startDate?:string;
   endDate?:string;
+  ongoing?:boolean;
   category:string;
   status:PublicationStatus;
   cover:string;
@@ -21,6 +22,19 @@ export type TimelineGroup<T extends EntryMeta=EntryMeta>={
   year:number|null;
   entries:T[];
 };
+
+export function formatPeriod(entry:Pick<EntryMeta,'startDate'|'endDate'|'ongoing'>,language:'en'|'zh'):string {
+  if(!entry.startDate)return language==='en'?'Date to confirm':'日期待确认';
+  const format=(value:string)=>{
+    if(value.length!==7)return value;
+    const [year,month]=value.split('-');
+    const months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    return language==='en'?`${months[Number(month)-1]} ${year}`:`${year}年${Number(month)}月`;
+  };
+  const start=format(entry.startDate);
+  if(entry.ongoing)return `${start} – ${language==='en'?'Present':'至今'}`;
+  return entry.endDate&&entry.endDate!==entry.startDate?`${start} – ${format(entry.endDate)}`:start;
+}
 
 export function compareEntries(a:EntryMeta,b:EntryMeta):number {
   return (a.startDate??'9999').localeCompare(b.startDate??'9999')

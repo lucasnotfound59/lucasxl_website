@@ -4,6 +4,8 @@
   "template": "research",
   "category": "Computational Biology",
   "status": "published",
+  "startDate": "2026-06",
+  "endDate": "2026-07",
   "cover": "/images/bfibs-ensemble.svg",
   "order": 2,
   "links": []

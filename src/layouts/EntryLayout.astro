@@ -2,6 +2,7 @@
 import EntryNavigation from '../components/EntryNavigation.astro';
 import MediaFigure from '../components/MediaFigure.astro';
 import {ui} from '../i18n/ui';
+import {formatPeriod} from '../lib/portfolio';
 import type {PortfolioEntry} from '../lib/content';
 import BaseLayout from './BaseLayout.astro';
 
@@ -19,9 +20,6 @@ type Props={
 const {entry,previous,next,articleClass,articleType}=Astro.props;
 const en=entry.en.data;
 const zh=entry.zh?.data??entry.en.data;
-const period=entry.meta.endDate
-  ?`${entry.meta.startDate} – ${entry.meta.endDate}`
-  :entry.meta.startDate;
 ---
 
 <BaseLayout title={`${en.title} | Lucas Xin`} description={en.summary}>
@@ -36,8 +34,8 @@ const period=entry.meta.endDate
         <span data-lang="zh" hidden>{zh.title}</span>
       </h1>
       <p class="entry-period" data-lang-group>
-        <span data-lang="en">{period??'Date to confirm'}</span>
-        <span data-lang="zh" hidden>{period??'日期待确认'}</span>
+        <span data-lang="en">{formatPeriod(entry.meta,'en')}</span>
+        <span data-lang="zh" hidden>{formatPeriod(entry.meta,'zh')}</span>
       </p>
       <p class="entry-summary" data-lang-group>
         <span data-lang="en">{en.summary}</span>

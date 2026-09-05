@@ -1,0 +1,12 @@
+{
+  "slug": "ftc-knowledge-bank",
+  "kind": "project",
+  "template": "engineering",
+  "category": "Developer Tools",
+  "status": "published",
+  "startDate": "2026-08",
+  "ongoing": true,
+  "cover": "/images/default-cover.svg",
+  "order": 8,
+  "links": []
+}

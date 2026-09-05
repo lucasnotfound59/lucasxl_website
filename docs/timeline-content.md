@@ -10,11 +10,17 @@ Each folder under `src/content/projects/` or `src/content/experiences/` contains
 - `en.md`: English title, summary, image description, and detail text.
 - `zh.md`: corresponding Chinese content.
 
-The first six entries are conservative summaries of existing project records: SOCRATES, EWC, BFIbs-Ensemble, dexterous-hand exploration, FTC, and AI/Coding Bootcamp preparation. They are not assertions of current completion or new results. Bootcamp delivery and FTC responsibilities remain unconfirmed. Research raw data, participant information, and unapproved metrics are not included.
+The nine entries cover SOCRATES, EWC, BFIbs-Ensemble, dexterous-hand exploration, FTC, IOAI volunteering, AI Club, NAICT First Prize, and FTC Knowledge Bank. The first five use conservative summaries of existing project records; subsequent entries were added directly at the owner's request. The owner confirmed IOAI responsibilities: robot debugging, explaining code to contestants, and interpreting between contestants and senior technical staff. FTC team responsibilities remain to be filled in. Research raw data, participant information, and unapproved metrics are not included. AI/Coding Bootcamp was removed at the owner's request; AI Club is a separate entry, not a restoration of Bootcamp.
 
-Project start dates were not established by these records. Omit `startDate` until a real date is known; the entry appears in “Dates to confirm” after dated entries. Do not use a document creation date or a planning deadline as the project date. Add a confirmed `startDate` in `YYYY-MM-DD` format to move an entry into chronological year grouping. `endDate` is optional and requires a start date.
+NAICT is a Track 4 team National First Prize dated August 2026, as supplied by the owner. The owner was team captain, responsible for data collection, training an ACT model from scratch on a server, deployment, and debugging. The task involved one robot retrieving goods from supermarket shelves and placing them in a designated area, followed by transfer using a robotic arm. ACT and training from scratch were explicitly confirmed by the owner; no dataset size or performance metrics have been supplied. FTC Knowledge Bank runs from August 2026 to the present. It serves new teammates and AI agents, with Kotlin coding and tool-use guidance; automatic enforcement and performance metrics are not claimed.
 
-The six covers are schematic SVG illustrations, not project photographs. Replace them with approved photographs or figures when available. Keep meaningful bilingual image descriptions.
+AI Club copy reflects the owner's account: co-founder of the school's first AI club, organizing the school's largest AI/CS information hub, and the first student instructor working alongside teachers and peers on introductory AI classes and workshops. No membership figures or session counts have been supplied or added.
+
+Dates confirmed by the owner: FTC September 2025–present; AI Club October 2025–present; dexterous hand January 2026–present; SOCRATES March–August 2026; EWC April 2026; BFIbs-Ensemble June–July 2026; IOAI volunteering August 2026. Entries are sorted by start date, not completion date.
+
+Use `YYYY-MM` for month-level dates or `YYYY-MM-DD` when a day is known. Do not invent a day to store month-only information. For ongoing projects use `ongoing: true` with a start date and no end date; this displays “Present / 至今”. An absent end date alone does not imply ongoing work. Omit `startDate` for unknown dates; these entries appear in “Dates to confirm” after dated entries.
+
+The covers are schematic SVG illustrations, not project photographs. Replace them with approved photographs or figures when available. Keep meaningful bilingual image descriptions.
 
 ## Contact
 

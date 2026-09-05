@@ -4,6 +4,8 @@
   "template": "research",
   "category": "AI Reliability",
   "status": "published",
+  "startDate": "2026-03",
+  "endDate": "2026-08",
   "cover": "/images/socrates.svg",
   "order": 0,
   "links": []

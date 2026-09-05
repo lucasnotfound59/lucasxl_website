@@ -4,6 +4,8 @@
   "template": "research",
   "category": "Continual Learning",
   "status": "published",
+  "startDate": "2026-04",
+  "endDate": "2026-04",
   "cover": "/images/ewc-continual-learning.svg",
   "order": 1,
   "links": []

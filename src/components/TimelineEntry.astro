@@ -1,6 +1,7 @@
 ---
 import type {PortfolioEntry} from '../lib/content';
 import {ui} from '../i18n/ui';
+import {formatPeriod} from '../lib/portfolio';
 
 type Props={
   entry:PortfolioEntry;
@@ -9,9 +10,6 @@ type Props={
 const {entry}=Astro.props;
 const en=entry.en.data;
 const zh=entry.zh?.data??entry.en.data;
-const period=entry.meta.endDate
-  ?`${entry.meta.startDate} – ${entry.meta.endDate}`
-  :entry.meta.startDate;
 const viewLabel=entry.meta.kind==='project'
   ?{en:ui.en.viewProject,zh:ui.zh.viewProject}
   :{en:ui.en.viewExperience,zh:ui.zh.viewExperience};
@@ -24,8 +22,8 @@ const viewLabel=entry.meta.kind==='project'
   </div>
   <div class="timeline-entry__meta">
     <p class="timeline-entry__period" data-lang-group>
-      <span data-lang="en">{period??'Date to confirm'}</span>
-      <span data-lang="zh" hidden>{period??'日期待确认'}</span>
+      <span data-lang="en">{formatPeriod(entry.meta,'en')}</span>
+      <span data-lang="zh" hidden>{formatPeriod(entry.meta,'zh')}</span>
     </p>
     <p class="timeline-entry__category" data-lang-group>
       <span data-lang="en">{entry.meta.category}</span>

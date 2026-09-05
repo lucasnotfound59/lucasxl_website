@@ -4,6 +4,8 @@
   "template": "experience",
   "category": "Team Engineering",
   "status": "published",
+  "startDate": "2025-09",
+  "ongoing": true,
   "cover": "/images/ftc-robotics.svg",
   "order": 4,
   "links": []

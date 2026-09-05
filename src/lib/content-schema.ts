@@ -9,8 +9,9 @@ export const metaSchema=z.object({
   slug:z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/),
   kind:z.enum(['project','experience']),
   template:z.enum(['research','engineering','experience']),
-  startDate:z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional(),
-  endDate:z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional(),
+  startDate:z.string().regex(/^\d{4}-(0[1-9]|1[0-2])(?:-(0[1-9]|[12]\d|3[01]))?$/).optional(),
+  endDate:z.string().regex(/^\d{4}-(0[1-9]|1[0-2])(?:-(0[1-9]|[12]\d|3[01]))?$/).optional(),
+  ongoing:z.boolean().optional(),
   category:z.string().min(1),
   status:z.enum(['draft','published']),
   cover:z.string().startsWith('/images/'),
@@ -25,6 +26,9 @@ export const metaSchema=z.object({
   }
   if(value.endDate&&!value.startDate){
     context.addIssue({code:'custom',message:'endDate requires startDate'});
+  }
+  if(value.ongoing&&(!value.startDate||value.endDate)){
+    context.addIssue({code:'custom',message:'Ongoing entries require startDate and no endDate'});
   }
   if(value.endDate&&value.startDate&&value.endDate<value.startDate){
     context.addIssue({code:'custom',message:'endDate cannot precede startDate'});

@@ -1,0 +1,12 @@
+{
+  "slug": "ioai-volunteer",
+  "kind": "experience",
+  "template": "experience",
+  "category": "Volunteering",
+  "status": "published",
+  "startDate": "2026-08",
+  "endDate": "2026-08",
+  "cover": "/images/default-cover.svg",
+  "order": 5,
+  "links": []
+}
