@@ -24,16 +24,12 @@ const viewLabel=entry.meta.kind==='project'
   </div>
   <div class="timeline-entry__meta">
     <p class="timeline-entry__period" data-lang-group>
-      <span data-lang="en">{period}</span>
+      <span data-lang="en">{period??'Date to confirm'}</span>
+      <span data-lang="zh" hidden>{period??'日期待确认'}</span>
     </p>
     <p class="timeline-entry__category" data-lang-group>
       <span data-lang="en">{entry.meta.category}</span>
     </p>
-    {entry.meta.status&&(
-      <p class="timeline-entry__status" data-lang-group>
-        <span data-lang="en">{entry.meta.status}</span>
-      </p>
-    )}
   </div>
   <h4 data-lang-group>
     <span data-lang="en">{en.title}</span>

@@ -1,0 +1,10 @@
+{
+  "slug": "dexterous-hand",
+  "kind": "project",
+  "template": "engineering",
+  "category": "Robotics",
+  "status": "published",
+  "cover": "/images/dexterous-hand.svg",
+  "order": 3,
+  "links": []
+}

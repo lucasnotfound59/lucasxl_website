@@ -4,6 +4,7 @@ import {ui} from '../i18n/ui';
 import TimelineEntry from './TimelineEntry.astro';
 
 const groups=await getTimelineGroups();
+let eventIndex=0;
 ---
 
 <section id="timeline" class="timeline-section" aria-labelledby="timeline-heading">
@@ -11,14 +12,27 @@ const groups=await getTimelineGroups();
     <span data-lang="en">{ui.en.timeline}</span>
     <span data-lang="zh" hidden>{ui.zh.timeline}</span>
   </h2>
+  <p class="timeline-intro" data-lang-group>
+    <span data-lang="en">Projects, experiments, and things I am learning along the way.</span>
+    <span data-lang="zh" hidden>记录一路上的项目、实验与学习探索。</span>
+  </p>
+  <div class="timeline-rail">
+  <p class="timeline-start">2023</p>
   {groups.map(group=>(
     <section class="timeline-year" aria-labelledby={`timeline-year-${group.year}`}>
       <h3 id={`timeline-year-${group.year}`} class="timeline-year__label" data-lang-group>
-        <span data-lang="en">{group.year}</span>
+        <span data-lang="en">{group.year??'Dates to confirm'}</span>
+        <span data-lang="zh" hidden>{group.year??'日期待确认'}</span>
       </h3>
       <div class="timeline-year__entries">
-        {group.entries.map(item=><TimelineEntry entry={item.entry} />)}
+        {group.entries.map(item=>(
+          <div class:list={['timeline-event',{'timeline-event--right':eventIndex++%2===1}]}>
+            <TimelineEntry entry={item.entry} />
+          </div>
+        ))}
       </div>
     </section>
   ))}
+  <p class="timeline-end" data-lang-group><span data-lang="en">More to come</span><span data-lang="zh" hidden>继续探索</span></p>
+  </div>
 </section>

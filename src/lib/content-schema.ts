@@ -9,7 +9,7 @@ export const metaSchema=z.object({
   slug:z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/),
   kind:z.enum(['project','experience']),
   template:z.enum(['research','engineering','experience']),
-  startDate:z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+  startDate:z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional(),
   endDate:z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional(),
   category:z.string().min(1),
   status:z.enum(['draft','published']),
@@ -23,7 +23,10 @@ export const metaSchema=z.object({
   if(value.kind==='project'&&value.template==='experience'){
     context.addIssue({code:'custom',message:'Project entries require the research or engineering template'});
   }
-  if(value.endDate&&value.endDate<value.startDate){
+  if(value.endDate&&!value.startDate){
+    context.addIssue({code:'custom',message:'endDate requires startDate'});
+  }
+  if(value.endDate&&value.startDate&&value.endDate<value.startDate){
     context.addIssue({code:'custom',message:'endDate cannot precede startDate'});
   }
 });

@@ -1,0 +1,10 @@
+{
+  "slug": "socrates",
+  "kind": "project",
+  "template": "research",
+  "category": "AI Reliability",
+  "status": "published",
+  "cover": "/images/socrates.svg",
+  "order": 0,
+  "links": []
+}

@@ -36,13 +36,9 @@ const period=entry.meta.endDate
         <span data-lang="zh" hidden>{zh.title}</span>
       </h1>
       <p class="entry-period" data-lang-group>
-        <span data-lang="en">{period}</span>
+        <span data-lang="en">{period??'Date to confirm'}</span>
+        <span data-lang="zh" hidden>{period??'日期待确认'}</span>
       </p>
-      {entry.meta.status&&(
-        <p class="entry-status" data-lang-group>
-          <span data-lang="en">{entry.meta.status}</span>
-        </p>
-      )}
       <p class="entry-summary" data-lang-group>
         <span data-lang="en">{en.summary}</span>
         <span data-lang="zh" hidden>{zh.summary}</span>

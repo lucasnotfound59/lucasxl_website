@@ -1,0 +1,10 @@
+{
+  "slug": "ai-coding-bootcamp",
+  "kind": "experience",
+  "template": "experience",
+  "category": "Community & Education",
+  "status": "published",
+  "cover": "/images/ai-coding-bootcamp.svg",
+  "order": 5,
+  "links": []
+}

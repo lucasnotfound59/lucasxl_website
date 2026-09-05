@@ -6,7 +6,7 @@ export type LocalizedProfile={
 };
 
 export type ContactConfig={
-  email?:string;
+  emails:{label:string;address:string}[];
   github?:string;
 };
 
@@ -25,4 +25,10 @@ export const profile:Record<'en'|'zh',LocalizedProfile>={
   }
 };
 
-export const contact:ContactConfig={};
+export const contact:ContactConfig={
+  emails:[
+    {label:'Gmail',address:'lucasnotfound59@gmail.com'},
+    {label:'Outlook',address:'lucasxinlu@outlook.com'}
+  ],
+  github:'https://github.com/lucasnotfound59'
+};

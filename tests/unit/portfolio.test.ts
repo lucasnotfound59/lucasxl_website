@@ -26,6 +26,13 @@ const experience:EntryMeta={
 };
 
 describe('portfolio metadata',()=>{
+  it('keeps undated entries after chronology in a separate group',()=>{
+    const undated={...project,slug:'undated',startDate:undefined};
+    expect([undated,experience,project].sort(compareEntries).map(entry=>entry.slug))
+      .toEqual(['early-project','later-program','undated']);
+    expect(groupEntriesByYear([undated,project]).map(group=>group.year))
+      .toEqual([2024,null]);
+  });
   it('orders entries from earliest to newest',()=>{
     expect([experience,project].sort(compareEntries).map(entry=>entry.slug))
       .toEqual(['early-project','later-program']);

@@ -1,0 +1,10 @@
+{
+  "slug": "ewc-continual-learning",
+  "kind": "project",
+  "template": "research",
+  "category": "Continual Learning",
+  "status": "published",
+  "cover": "/images/ewc-continual-learning.svg",
+  "order": 1,
+  "links": []
+}

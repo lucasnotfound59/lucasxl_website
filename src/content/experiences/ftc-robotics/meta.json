@@ -1,0 +1,10 @@
+{
+  "slug": "ftc-robotics",
+  "kind": "experience",
+  "template": "experience",
+  "category": "Team Engineering",
+  "status": "published",
+  "cover": "/images/ftc-robotics.svg",
+  "order": 4,
+  "links": []
+}

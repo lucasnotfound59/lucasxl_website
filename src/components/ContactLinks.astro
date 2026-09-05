@@ -1,11 +1,12 @@
 ---
 import {contact} from '../data/profile';
 
-const emailValid=contact.email&&/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contact.email);
+const emails=contact.emails.filter(email=>/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.address));
 const githubValid=contact.github&&/^https:\/\/github\.com\/[A-Za-z0-9-]+\/?$/.test(contact.github);
+const githubHandle=githubValid?new URL(contact.github!).pathname.replaceAll('/',''):'';
 ---
 
 <ul class="contact-links">
-  {emailValid&&<li><a href={`mailto:${contact.email}`}>{contact.email}</a></li>}
-  {githubValid&&<li><a href={contact.github} rel="me noreferrer">GitHub</a></li>}
+  {emails.map(email=><li><a href={`mailto:${email.address}`}><strong>{email.label}</strong><span>{email.address}</span></a></li>)}
+  {githubValid&&<li><a href={contact.github} rel="me noreferrer"><strong>GitHub</strong><span>@{githubHandle}</span></a></li>}
 </ul>

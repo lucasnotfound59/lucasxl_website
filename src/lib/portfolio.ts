@@ -8,7 +8,7 @@ export type EntryMeta={
   slug:string;
   kind:EntryKind;
   template:TemplateKind;
-  startDate:string;
+  startDate?:string;
   endDate?:string;
   category:string;
   status:PublicationStatus;
@@ -18,20 +18,20 @@ export type EntryMeta={
 };
 
 export type TimelineGroup<T extends EntryMeta=EntryMeta>={
-  year:number;
+  year:number|null;
   entries:T[];
 };
 
 export function compareEntries(a:EntryMeta,b:EntryMeta):number {
-  return a.startDate.localeCompare(b.startDate)
+  return (a.startDate??'9999').localeCompare(b.startDate??'9999')
     || a.order-b.order
     || a.slug.localeCompare(b.slug);
 }
 
 export function groupEntriesByYear<T extends EntryMeta>(entries:T[]):TimelineGroup<T>[] {
-  const groups=new Map<number,T[]>();
+  const groups=new Map<number|null,T[]>();
   for(const entry of [...entries].sort(compareEntries)){
-    const year=Number(entry.startDate.slice(0,4));
+    const year=entry.startDate?Number(entry.startDate.slice(0,4)):null;
     groups.set(year,[...(groups.get(year)??[]),entry]);
   }
   return [...groups].map(([year,groupedEntries])=>({year,entries:groupedEntries}));

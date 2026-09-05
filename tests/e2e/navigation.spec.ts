@@ -8,6 +8,38 @@ test('header routes visitors through homepage previews',async({page})=>{
   expect(hrefs).toEqual(['/#welcome','/#about','/#timeline','/resume','/#contact']);
 });
 
+test('contact addresses work on the homepage and contact page in both languages',async({page})=>{
+  for(const route of ['/','/contact']){
+    await page.goto(route);
+    const links=page.locator('.contact-links');
+    for(const language of ['EN','中']){
+      await page.getByRole('button',{name:language,exact:true}).click();
+      await expect(links.locator('a[href="mailto:lucasnotfound59@gmail.com"]')).toBeVisible();
+      await expect(links.locator('a[href="mailto:lucasxinlu@outlook.com"]')).toBeVisible();
+      await expect(links.locator('a[href="https://github.com/lucasnotfound59"]')).toBeVisible();
+      await expect(links.locator('a[href^="tel:"]')).toHaveCount(0);
+    }
+  }
+});
+
+test('timeline alternates across the rail on desktop and stays in one column on mobile',async({page,isMobile})=>{
+  await page.goto('/');
+  const rail=await page.locator('.timeline-rail').boundingBox();
+  const cards=page.locator('[data-timeline-entry]');
+  const first=await cards.nth(0).boundingBox();
+  const second=await cards.nth(1).boundingBox();
+  expect(rail&&first&&second).toBeTruthy();
+  if(!rail||!first||!second)return;
+  if(isMobile){
+    expect(Math.abs(first.x-second.x)).toBeLessThan(1);
+    expect(first.x+first.width).toBeLessThanOrEqual(page.viewportSize()!.width);
+  }else{
+    expect(first.x+first.width).toBeLessThan(rail.x+rail.width/2);
+    expect(second.x).toBeGreaterThan(rail.x+rail.width/2);
+  }
+  expect(first.y+first.height).toBeLessThan(second.y);
+});
+
 test('timeline cards navigate instead of expanding inline',async({page})=>{
   await page.goto('/');
   const timeline=page.locator('#timeline');
