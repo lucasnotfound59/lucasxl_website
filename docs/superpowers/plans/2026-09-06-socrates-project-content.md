@@ -25,6 +25,7 @@
 - Modify: `src/content/projects/socrates/en.md`, `src/content/projects/socrates/zh.md`, `src/styles/global.css`.
 - Create: `public/images/socrates/c_accuracy_by_type.png`, `c_mratio.png`, `c_hallucination_acc.png`, `c_errors_ceiling.png`.
 - Create: `docs/socrates-content-sources.md`, `tests/unit/socrates-content.test.ts`.
+- Modify: `scripts/validate-content.ts`; add focused validator regression tests/fixtures for research heading aliases, as explicitly chosen by user after template conflict was discovered.
 - Read unchanged: `src/layouts/EntryLayout.astro`, `src/content/projects/socrates/meta.json`, `tests/e2e/language.spec.ts`, `playwright.config.ts`.
 
 **Interfaces:**
@@ -75,10 +76,10 @@ mkdir -p public/images/socrates
 cp '/Users/xinlu/Desktop/EAI Project/experiment/results/figures/c_accuracy_by_type.png' public/images/socrates/c_accuracy_by_type.png
 cp '/Users/xinlu/Desktop/EAI Project/experiment/results/figures/c_mratio.png' public/images/socrates/c_mratio.png
 cp '/Users/xinlu/Desktop/EAI Project/experiment/results/figures/c_hallucination_acc.png' public/images/socrates/c_hallucination_acc.png
-cp '/Users/xinlu/Desktop/EAI Project/experiment/results/figures/c_errors_ceiling.png' public/images/socrates/c_errors_ceiling.png
+cp '/Users/xinlu/Desktop/EAI Project/experiment/poster_figs/c_errors_ceiling.png' public/images/socrates/c_errors_ceiling.png
 ```
 
-Determine dimensions with `sips -g pixelWidth -g pixelHeight public/images/socrates/*.png`. Use those exact dimensions in markup. Original PNGs are small enough for direct lossless copies; do not edit chart text or regenerate findings.
+Determine dimensions with `sips -g pixelWidth -g pixelHeight public/images/socrates/*.png`. Use those exact dimensions in markup. Original PNGs are small enough for direct lossless copies; do not edit chart text or regenerate findings. User approved using the poster version of the ceiling chart: the results/figures version has a stale Qwen3-4B bar, whereas the poster version agrees with the current aggregate CSVs (35 errors). Record this correction in provenance.
 
 - [ ] **Step 3: Write parallel English and Chinese content using the following editorial contract.**
 
@@ -138,11 +139,13 @@ Insert beside existing gallery rules in `src/styles/global.css`:
 
 Write `docs/socrates-content-sources.md`: local source root, four original-to-public mappings, figures' unchanged hashes, numeric sources, outdated DOCX observation, language/sample/ceiling caveats, user's three future plans and no disclosure of raw records. Record only project-level data. Run `npm test`, `git diff --check`.
 
-Build validation uses a no-space copy because the workspace path has a known Vite URI issue. Sync source, public, tests and docs to `/private/tmp/lucasxl-dates-CET1LU` using `rsync -a` without deletion; dependencies already exist there. Run `npm run build` and `npm run test:e2e` there; request tool escalation if local IPC/server permissions require it. Expected 14 routes, zero Astro errors, all unit/E2E checks passing. Existing fixture warnings refer to intentional missing Chinese fallback content; report them transparently.
+The user chose to keep the new section names and adjust validation. Add research-only heading aliases: Methodology / Study Design; Results and Evidence / Findings and Evidence; Reflection and Next Steps / What I Can Do Next; My Role / My Role and Research Process; Limitations / Limitations and Reflection. Keep mandatory-section checks and all legacy, engineering and experience behavior. Add tests demonstrating new and old research headings pass and genuinely absent sections fail. Do not bypass validation.
+
+Build validation uses a no-space copy because the workspace path has a known Vite URI issue. Sync source, public, scripts, tests and docs to `/private/tmp/lucasxl-dates-CET1LU` using `rsync -ac` without deletion, with absolute source paths under `/Users/xinlu/Documents/New project/`; dependencies already exist there. Compare SOCRATES Markdown and validator hashes between copies before npm commands. Running a relative-source rsync from the destination causes a self-sync and invalidates test evidence. Run `npm run build` and `npm run test:e2e` there; request tool escalation if local IPC/server permissions require it. Expected 14 routes, zero Astro errors, all unit/E2E checks passing. Existing fixture warnings refer to intentional missing Chinese fallback content; report them transparently.
 
 - [ ] **Step 6: Self-review and commit this task only.**
 
-Inspect both language versions against the numerical and disclosure contract. Confirm only four approved assets were copied. Stage the two Markdown files, CSS, four PNGs, provenance doc and new unit test with explicit paths; run cached diff check; commit `feat: add SOCRATES research story and figures`. No push. Write report with exact test output, red/green evidence, source discrepancies and commit. The controller performs real-content browser smoke and independent review before handoff.
+Inspect both language versions against the numerical and disclosure contract. Confirm only four approved assets were copied. Stage the two Markdown files, CSS, four PNGs, provenance doc and new unit test with explicit paths; run cached diff check; commit `feat: add SOCRATES research story and figures`. Commit the user-approved validator compatibility fix and its regression tests separately. No push. Write report with exact test output, red/green evidence, source discrepancies and commit. The controller performs real-content browser smoke and independent review before handoff.
 
 ## Controller validation and completion
 
