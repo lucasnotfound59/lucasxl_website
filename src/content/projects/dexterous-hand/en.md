@@ -1,7 +1,7 @@
 ---
 title: "Dexterous Hand Exploration"
 summary: "Exploring a 16-DOF tendon-driven hand, vision-based teleoperation, and the connection between perception and actuation."
-coverAlt: "Illustration for Dexterous Hand Exploration"
+coverAlt: "Close-up of a white tendon-driven robotic hand on a workbench"
 ---
 
 ## Problem and Constraints
@@ -17,6 +17,14 @@ This entry collects the hardware and control exploration; detailed responsibilit
 The project context includes a tendon-driven hand, bus servos, and a vision-based teleoperation pipeline.
 
 ## Implementation Process
+
+<div class="photo-gallery">
+  <figure>
+    <a href="/images/photos/dexterous-hand-workbench.webp"><img src="/images/photos/dexterous-hand-workbench.webp" width="1013" height="1800" alt="Robotic hand, servos, and wiring on the workbench." loading="lazy" decoding="async" /></a>
+    <figcaption>Robotic hand, servos, and wiring on the workbench.</figcaption>
+  </figure>
+</div>
+
 
 The exploration includes MediaPipe hand tracking, servo configuration, and learning-based control tooling.
 

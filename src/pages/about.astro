@@ -1,6 +1,7 @@
 ---
 import {profile} from '../data/profile';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import MediaFigure from '../components/MediaFigure.astro';
 ---
 
 <BaseLayout title="About | Lucas Xin" description="About Lucas Xin.">
@@ -9,6 +10,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       <span data-lang="en">About</span>
       <span data-lang="zh" hidden>关于</span>
     </h1>
+    <MediaFigure
+      src="/images/photos/about-sunset.webp"
+      enAlt="Sunset sky framed by trees above a fence"
+      zhAlt="树枝与围栏之间的日落天空"
+      enCaption="A quiet sunset."
+      zhCaption="一刻日落。"
+    />
     {profile.en.about.map((paragraph,index)=><div data-lang-group>
       <p data-lang="en">{paragraph}</p>
       {profile.zh.about[index]&&<p data-lang="zh" hidden>{profile.zh.about[index]}</p>}

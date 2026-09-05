@@ -20,7 +20,7 @@ Dates confirmed by the owner: FTC September 2025–present; AI Club October 2025
 
 Use `YYYY-MM` for month-level dates or `YYYY-MM-DD` when a day is known. Do not invent a day to store month-only information. For ongoing projects use `ongoing: true` with a start date and no end date; this displays “Present / 至今”. An absent end date alone does not imply ongoing work. Omit `startDate` for unknown dates; these entries appear in “Dates to confirm” after dated entries.
 
-The covers are schematic SVG illustrations, not project photographs. Replace them with approved photographs or figures when available. Keep meaningful bilingual image descriptions.
+FTC, IOAI, dexterous-hand, and BFIbs-Ensemble entries now use supplied photographs; remaining covers are schematic placeholders. BFIbs-Ensemble includes a separate CMU photo diary, not research-result evidence. About includes the owner's selected sunset photo. See `docs/photo-placement.md` for the source-to-page mapping. Keep meaningful bilingual image descriptions.
 
 ## Contact
 

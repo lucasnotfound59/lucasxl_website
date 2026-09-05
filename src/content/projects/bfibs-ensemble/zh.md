@@ -1,7 +1,7 @@
 ---
 title: "BFIbs-Ensemble 计算生物学"
 summary: "探索晶体学 B-factor 能否帮助刻画交叉对接难度，并为集成对接提供参考。"
-coverAlt: "BFIbs-Ensemble 计算生物学示意图"
+coverAlt: "CMU 校园的草坪与旗杆"
 ---
 
 ## 研究问题
@@ -31,3 +31,50 @@ coverAlt: "BFIbs-Ensemble 计算生物学示意图"
 ## 反思与下一步
 
 补充流程图，并简要说明发现及其局限。
+
+## CMU 学习生活
+
+记录在 CMU 期间的合照、学习空间与校园日常。
+
+<div class="photo-gallery">
+  <figure>
+    <a href="/images/photos/cmu-lecture-group.webp"><img src="/images/photos/cmu-lecture-group.webp" width="1800" height="1355" alt="CMU 讲堂里的合照。" loading="lazy" decoding="async" /></a>
+    <figcaption>CMU 讲堂里的合照。</figcaption>
+  </figure>
+  <figure>
+    <a href="/images/photos/cmu-lecture-hall.webp"><img src="/images/photos/cmu-lecture-hall.webp" width="1355" height="1800" alt="在讲堂里留下的合影。" loading="lazy" decoding="async" /></a>
+    <figcaption>在讲堂里留下的合影。</figcaption>
+  </figure>
+  <figure>
+    <a href="/images/photos/cmu-lobby-group.webp"><img src="/images/photos/cmu-lobby-group.webp" width="1800" height="1350" alt="大厅里的合照。" loading="lazy" decoding="async" /></a>
+    <figcaption>大厅里的合照。</figcaption>
+  </figure>
+  <figure>
+    <a href="/images/photos/cmu-study-space.webp"><img src="/images/photos/cmu-study-space.webp" width="1350" height="1800" alt="落地窗边的学习空间。" loading="lazy" decoding="async" /></a>
+    <figcaption>落地窗边的学习空间。</figcaption>
+  </figure>
+  <figure>
+    <a href="/images/photos/cmu-lounge.webp"><img src="/images/photos/cmu-lounge.webp" width="1800" height="1350" alt="校园休息区的桌椅。" loading="lazy" decoding="async" /></a>
+    <figcaption>校园休息区的桌椅。</figcaption>
+  </figure>
+  <figure>
+    <a href="/images/photos/cmu-campus-street.webp"><img src="/images/photos/cmu-campus-street.webp" width="1350" height="1800" alt="校园街道一景。" loading="lazy" decoding="async" /></a>
+    <figcaption>校园街道一景。</figcaption>
+  </figure>
+  <figure>
+    <a href="/images/photos/cmu-campus-path.webp"><img src="/images/photos/cmu-campus-path.webp" width="1800" height="1350" alt="蓝天下的校园建筑。" loading="lazy" decoding="async" /></a>
+    <figcaption>蓝天下的校园建筑。</figcaption>
+  </figure>
+  <figure>
+    <a href="/images/photos/cmu-architecture-detail.webp"><img src="/images/photos/cmu-architecture-detail.webp" width="1355" height="1800" alt="暖光中的建筑细节。" loading="lazy" decoding="async" /></a>
+    <figcaption>暖光中的建筑细节。</figcaption>
+  </figure>
+  <figure>
+    <a href="/images/photos/cmu-evening-skyline.webp"><img src="/images/photos/cmu-evening-skyline.webp" width="1800" height="1350" alt="CMU 期间拍下的傍晚天际线。" loading="lazy" decoding="async" /></a>
+    <figcaption>CMU 期间拍下的傍晚天际线。</figcaption>
+  </figure>
+  <figure>
+    <a href="/images/photos/cmu-postcards.webp"><img src="/images/photos/cmu-postcards.webp" width="1013" height="1800" alt="陈列中的 CMU 插画明信片。" loading="lazy" decoding="async" /></a>
+    <figcaption>陈列中的 CMU 插画明信片。</figcaption>
+  </figure>
+</div>
