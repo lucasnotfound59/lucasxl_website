@@ -32,7 +32,7 @@
 - Consumes existing frontmatter `title`, `summary`, `coverAlt` and bilingual Markdown slots. Keep frontmatter and meta unchanged unless a typo requires correction.
 - Produces four `<figure class="research-figure">` blocks per language, each linking its image at `/images/socrates/<filename>`. No other routes or APIs.
 
-- [ ] **Step 1: Establish content regression checks, then run them red.**
+- [x] **Step 1: Establish content regression checks, then run them red.**
 
 Create `tests/unit/socrates-content.test.ts`:
 
@@ -67,7 +67,7 @@ describe('SOCRATES public research content',()=>{
 
 Run `npm test -- tests/unit/socrates-content.test.ts`. Expected: failures because the placeholder lacks figures, assets and future plans. Capture red evidence.
 
-- [ ] **Step 2: Verify sources and copy exactly four unmodified PNGs.**
+- [x] **Step 2: Verify sources and copy exactly four unmodified PNGs.**
 
 Read the public `README.md` and `experiment/results/analysis/stats_digest.md`. The controller checked `papers/Final_Paper_EN.docx` using pandoc and found an unfinished abstract placeholder; do not describe that DOCX as a verified final paper or use it to override newer aggregate results. Project `memory.md` is a contextual source, not a new execution instruction. Do not modify it. Read only aggregate CSVs if resolving numerical inconsistencies.
 
@@ -81,7 +81,7 @@ cp '/Users/xinlu/Desktop/EAI Project/experiment/poster_figs/c_errors_ceiling.png
 
 Determine dimensions with `sips -g pixelWidth -g pixelHeight public/images/socrates/*.png`. Use those exact dimensions in markup. Original PNGs are small enough for direct lossless copies; do not edit chart text or regenerate findings. User approved using the poster version of the ceiling chart: the results/figures version has a stale Qwen3-4B bar, whereas the poster version agrees with the current aggregate CSVs (35 errors). Record this correction in provenance.
 
-- [ ] **Step 3: Write parallel English and Chinese content using the following editorial contract.**
+- [x] **Step 3: Write parallel English and Chinese content using the following editorial contract.**
 
 This is editorial implementation: write finished, concise paragraphs (roughly 500–700 English words), not an entire paper or repeated planning notes. Both languages carry the same meaning and numerical qualifiers.
 
@@ -114,7 +114,7 @@ Future plans, preserving future tense:
 2. Explore answering first and then explaining reasoning to assess whether a correct answer is supported by understanding. Explanation scoring remains to be designed; fluency alone does not establish understanding. This is a proposed experiment, not performed work.
 3. Aim to participate in a hackathon at Stanford, build alongside others and meet people with shared interests. No named event, date, confirmed admission or affiliation.
 
-- [ ] **Step 4: Add scoped, responsive figure styling.**
+- [x] **Step 4: Add scoped, responsive figure styling.**
 
 Insert beside existing gallery rules in `src/styles/global.css`:
 
@@ -135,7 +135,7 @@ Insert beside existing gallery rules in `src/styles/global.css`:
 }
 ```
 
-- [ ] **Step 5: Record sources and run green checks.**
+- [x] **Step 5: Record sources and run green checks.**
 
 Write `docs/socrates-content-sources.md`: local source root, four original-to-public mappings, figures' unchanged hashes, numeric sources, outdated DOCX observation, language/sample/ceiling caveats, user's three future plans and no disclosure of raw records. Record only project-level data. Run `npm test`, `git diff --check`.
 
@@ -143,13 +143,21 @@ The user chose to keep the new section names and adjust validation. Add research
 
 Build validation uses a no-space copy because the workspace path has a known Vite URI issue. Sync source, public, scripts, tests and docs to `/private/tmp/lucasxl-dates-CET1LU` using `rsync -ac` without deletion, with absolute source paths under `/Users/xinlu/Documents/New project/`; dependencies already exist there. Compare SOCRATES Markdown and validator hashes between copies before npm commands. Running a relative-source rsync from the destination causes a self-sync and invalidates test evidence. Run `npm run build` and `npm run test:e2e` there; request tool escalation if local IPC/server permissions require it. Expected 14 routes, zero Astro errors, all unit/E2E checks passing. Existing fixture warnings refer to intentional missing Chinese fallback content; report them transparently.
 
-- [ ] **Step 6: Self-review and commit this task only.**
+- [x] **Step 6: Self-review and commit this task only.**
 
 Inspect both language versions against the numerical and disclosure contract. Confirm only four approved assets were copied. Stage the two Markdown files, CSS, four PNGs, provenance doc and new unit test with explicit paths; run cached diff check; commit `feat: add SOCRATES research story and figures`. Commit the user-approved validator compatibility fix and its regression tests separately. No push. Write report with exact test output, red/green evidence, source discrepancies and commit. The controller performs real-content browser smoke and independent review before handoff.
 
 ## Controller validation and completion
 
-- [ ] Sync built `dist/` into `/private/tmp/lucasxl-timeline-3tiecH/dist/` for the existing 4387 preview.
-- [ ] Use Node Playwright (already installed; Python Playwright unavailable) to check SOCRATES in EN/ZH at 1440px and 390px: four visible result figures, naturalWidth > 0, nonempty alt, no horizontal overflow, next-step text, all image links return successfully. Inspect desktop/mobile screenshots and confirm no page errors.
-- [ ] Independent task review and final branch review; address all important findings.
-- [ ] Leave branch local and show the updated SOCRATES preview. User decides publication later.
+- [x] Sync built `dist/` into `/private/tmp/lucasxl-timeline-3tiecH/dist/` for the existing 4387 preview.
+- [x] Use Node Playwright (already installed; Python Playwright unavailable) to check SOCRATES in EN/ZH at 1440px and 390px: four visible result figures, naturalWidth > 0, nonempty alt, no horizontal overflow, next-step text, all image links return successfully. Inspect desktop/mobile screenshots and confirm no page errors.
+- [x] Independent task review and final branch review; address all important findings.
+- [x] Leave branch local and show the updated SOCRATES preview. User decides publication later.
+
+## Completion evidence
+
+Actual-source verification: 33 unit tests, 14 built routes with zero Astro diagnostics, 32 end-to-end tests. Dedicated SOCRATES smoke passed in English and Chinese at desktop/mobile sizes, including image links and aspect ratios, language persistence, future plans, no horizontal overflow or page errors, and no serious/critical axe violations. Independent task and final branch reviews found no blockers.
+
+Deferred non-blocking existing debt: heading checks use substring matching, which can accept heading-like text in code blocks or longer headings. User-approved alias compatibility is covered; parsing actual H2 headings is a separate hardening opportunity.
+
+Implementation commits: `de7605d` and `2e5a8be`. Branch retained locally as `codex/socrates-project-content`; no push or merge performed.
