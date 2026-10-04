@@ -1,6 +1,6 @@
 ---
 title: "VisitSmoothie / 医伴"
-summary: "与朋友共同开发的本地原型，帮助患者在就诊前整理症状、就诊后整理医嘱，并由患者确认信息。"
+summary: "在 Stanford Venture Trip 期间的黑客松中与朋友共同开发的本地原型，帮助患者确认并整理就诊前症状和就诊后医嘱。"
 coverAlt: "VisitSmoothie 的示意占位封面"
 ---
 
@@ -10,7 +10,7 @@ coverAlt: "VisitSmoothie 的示意占位封面"
 
 ## 我的职责
 
-我与朋友共同开发 VisitSmoothie，并参与了所有模块。我们协作推进患者流程、界面、AI 辅助信息收集与整理及系统集成，不将任何模块独占归于我。
+我在 Stanford Venture Trip 期间的黑客松中与朋友共同开发 VisitSmoothie，并参与了所有模块。我们协作推进患者流程、界面、AI 辅助信息收集与整理及系统集成，不将任何模块独占归于我。
 
 ## 系统概览
 

@@ -1,6 +1,6 @@
 ---
 title: "VisitSmoothie / 医伴"
-summary: "A collaborative local prototype for organizing symptoms before a visit and clinician instructions afterward, with patient confirmation."
+summary: "Built with friends at a hackathon during Stanford Venture Trip: a local prototype for patient-confirmed symptom and clinician-instruction organization."
 coverAlt: "Schematic placeholder cover for VisitSmoothie"
 ---
 
@@ -10,7 +10,7 @@ Patients need to describe their symptoms before a visit and remember clinician i
 
 ## My Responsibilities
 
-I developed VisitSmoothie together with friends and was involved across all modules. We collaborated on the patient workflow, interface, AI-assisted collection and organization, and integration. No module is attributed exclusively to me.
+I developed VisitSmoothie together with friends at a hackathon during Stanford Venture Trip and was involved across all modules. We collaborated on the patient workflow, interface, AI-assisted collection and organization, and integration. No module is attributed exclusively to me.
 
 ## System Overview
 
