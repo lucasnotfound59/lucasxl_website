@@ -4,6 +4,12 @@ summary: "Comparing human and language-model confidence: calibration, uncertaint
 coverAlt: "Illustration for Project SOCRATES"
 ---
 
+## Abstract
+
+Large language models (LLMs) can produce fluent answers even when those answers are wrong, making the usefulness of their expressed confidence a practical safety question. This study compares answer–confidence behavior in 46 Chinese-speaking participants (1,647 valid responses) and two model cohorts on a 400-item true/false bank. Nineteen configurations were prompted in English, and six locally served open-weight configurations were prompted in Chinese (9,600 attempts; 9,597 valid responses). All respondents used the same five-level confidence structure. Expected Calibration Error (ECE) measured aggregate calibration bias, while meta-d′/d′ (M-ratio) and Type-2 AUC measured confidence sensitivity conditional on first-order performance. The human cohort had ECE = .086 and a higher ECE than 17 of 19 English-prompted configurations by paired clustered-bootstrap comparison. In the Chinese-prompted cohort, mean model accuracy was .954 and mean ECE was .053, compared with .735 and .086 for humans; one configuration, Qwen3 1.7B Q8_0, had ECE = .101. The human MLE M-ratio was 1.370, whereas data-driven model estimates ranged from .310 to .690 in English and .152 to .458 in Chinese. On fictional versus real-but-obscure entities, humans showed near-zero answer-level discrimination (d′ = .001), whereas Chinese-prompted models ranged from 1.58 to 5.24. These findings describe different observable confidence patterns, not the presence or absence of metacognition, self-awareness, or consciousness. The Chinese-prompted cohort matches the human task language for six configurations, but differences in serving stack, model realization, and sampling prevent a causal interpretation of language.
+
+*Revised abstract, September 20, 2026. The timeline retains the March–August core-study period; the Chinese replication is a September extension.*
+
 ## Research Question
 
 Does confidence track correctness in the same way for humans and language models? Project SOCRATES asks this question with a shared True/False task and a shared confidence scale. The goal is not only to ask which group is more accurate, but whether confidence rises and falls with correctness. Reliable AI should communicate uncertainty: an answer that sounds certain when it is wrong can be more harmful than an openly tentative one.
@@ -18,9 +24,11 @@ This was my independent research project. I developed it through a workflow of q
 
 ## Study Design
 
-The bilingual bank contained 400 True/False questions: 100 ordinary-knowledge items, 100 disciplinary items, 100 plausible-sounding pseudoscientific traps, and 100 hallucination items mixing fictional entities with real but obscure ones. After each answer, humans and models used the same five-level retrospective confidence format. Each model received four stochastic samples per question. The aggregate dataset covers 46 humans, 1,647 valid answers, and 20 model configurations. Humans answered in Chinese, while models answered in English—a central confound in any comparison.
+The bilingual bank contained 400 True/False questions: 100 ordinary-knowledge items, 100 disciplinary items, 100 plausible-sounding pseudoscientific traps, and 100 hallucination items mixing fictional entities with real but obscure ones. After each answer, humans and models used the same five-level retrospective confidence format. Each model received four stochastic samples per question. The revised study includes 46 humans with 1,647 valid answers, 19 English-prompted configurations, and six Chinese-prompted local open-weight configurations with 9,600 attempts and 9,597 valid responses. The two model cohorts are reported separately: language, model coverage, backend, quantization, and sampling differ. Matching the human task language in the Chinese cohort does not isolate a causal language effect.
 
 ## Findings and Evidence
+
+The revised abstract above reports the September replication. The four figures below remain from the original English-cohort analysis; their numerical descriptions retain that provenance and are not Chinese-replication plots.
 
 Human overall accuracy was 73.5%, while most model configurations scored 97–100%. Across the full 100-item hallucination category, human accuracy was 50.9%. These are first-order accuracy results, not measures of how well confidence tracked errors.
 
@@ -52,10 +60,10 @@ Near-ceiling models made too few errors to support reliable M-ratio estimates. A
 
 ## Limitations and Reflection
 
-The human sample was small, mostly students, and drawn from one Chinese-speaking population. Language was confounded with group, and the strongest models saturated this bank. The conclusions are behavioral only. My central lesson is that accuracy, calibration, and internal understanding must not be collapsed into one idea, and that every inference should stay within what the measurement can support.
+The human sample was small, mostly students, and drawn from one Chinese-speaking population. Language was confounded with group in the original comparison. The Chinese replication matches task language for six configurations, but serving stack, model realization, and sampling still differ; it cannot establish a causal language effect. The strongest models saturated this bank. The conclusions are behavioral only. My central lesson is that accuracy, calibration, and internal understanding must not be collapsed into one idea, and that every inference should stay within what the measurement can support.
 
 ## What I Can Do Next
 
-I plan to investigate when AI systems produce unsupported answers and how stated confidence relates to those errors. I also want to test an answer-first, explanation-second format to ask whether a correct answer is supported by understanding. The explanation-scoring method still needs to be designed, and fluent language alone will not count as understanding. Finally, I aim to participate in a hackathon at Stanford, build alongside others, and meet people with shared interests; this is a future goal, not a confirmed event, admission, or affiliation.
+I plan to investigate when AI systems produce unsupported answers and how stated confidence relates to those errors. I also want to test an answer-first, explanation-second format to ask whether a correct answer is supported by understanding. The explanation-scoring method still needs to be designed, and fluent language alone will not count as understanding. I have also built [VisitSmoothie](/projects/visit-smoothie/) with friends: a completed local prototype for patient communication before and after a medical visit. That collaborative engineering experience is separate from this study's research evidence.
 
-*Source note: figures and numerical claims on this page come from the project's aggregate analysis.*
+*Source note: the abstract comes verbatim from the September 20 revised paper. The four retained figures and their accompanying numerical claims come from the original aggregate analysis; the model cohorts are not pooled.*
