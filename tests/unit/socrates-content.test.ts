@@ -14,7 +14,8 @@ describe('SOCRATES public research content',()=>{
       }
       expect(content.match(/alt="[^"]+"/g)).toHaveLength(4);
       expect(content).toContain(lang==='en'?'## What I Can Do Next':'## 下一步探索');
-      expect(content).toContain(lang==='en'?'Stanford':'斯坦福');
+      expect(content).toContain('](/projects/visit-smoothie/)');
+      expect(content).not.toContain(lang==='en'?'I aim to participate in a hackathon':'我希望未来参加在斯坦福举办的黑客松');
       expect(content).toContain(lang==='en'?'Chinese':'中文');
       expect(content).toContain(lang==='en'?'English':'英文');
       expect(content).toContain('1,647');
