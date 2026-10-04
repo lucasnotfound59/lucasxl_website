@@ -1,7 +1,7 @@
 ---
 title: "VisitSmoothie / 医伴"
 summary: "Built with friends at a hackathon during Stanford Venture Trip: a local prototype for patient-confirmed symptom and clinician-instruction organization."
-coverAlt: "Schematic placeholder cover for VisitSmoothie"
+coverAlt: "VisitSmoothie welcome screen in Chinese, with a language switch, login and Start My Health Journey button"
 ---
 
 ## Problem and Constraints
@@ -15,6 +15,8 @@ I developed VisitSmoothie together with friends at a hackathon during Stanford V
 ## System Overview
 
 Before a visit, onboarding and body-map intake help patients record symptoms, confirm their wording, and prepare a report for a clinician. After a visit, Clinical Plan organizes clinician instructions and follow-up reminders. Account, provider-selection, transcription, report, and settings flows support the workflow. Risky situations direct patients toward medical care.
+
+The screenshot above shows the prototype's Chinese welcome screen, with a Chinese/English switch, registration entry and login. It is an interface example, not evidence of clinical effectiveness.
 
 ## Implementation Process
 
