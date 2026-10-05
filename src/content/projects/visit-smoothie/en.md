@@ -1,16 +1,16 @@
 ---
-title: "VisitSmoothie / 医伴"
-summary: "Built with friends at a hackathon during Stanford Venture Trip: a local prototype for patient-confirmed symptom and clinician-instruction organization."
-coverAlt: "VisitSmoothie welcome screen in Chinese, with a language switch, login and Start My Health Journey button"
+title: "Visit Smoothie"
+summary: "A collaborative local prototype for patient-confirmed symptoms and clinician instructions, awarded the Grand Prize at the Stanford Hackathon."
+coverAlt: "Visit Smoothie welcome screen in Chinese, with a language switch, login and Start My Health Journey button"
 ---
 
 ## Problem and Constraints
 
-Patients need to describe their symptoms before a visit and remember clinician instructions afterward. VisitSmoothie collects and organizes patient-confirmed information without making diagnoses or setting medication doses. The result is a local prototype, not a service deployed for real patients.
+Patients need to describe their symptoms before a visit and remember clinician instructions afterward. Visit Smoothie collects and organizes patient-confirmed information without making diagnoses or setting medication doses. The result is a local prototype, not a service deployed for real patients.
 
 ## My Responsibilities
 
-I developed VisitSmoothie together with friends at a hackathon during Stanford Venture Trip and was involved across all modules. We collaborated on the patient workflow, interface, AI-assisted collection and organization, and integration. No module is attributed exclusively to me.
+I developed Visit Smoothie together with friends at a hackathon during Stanford Venture Trip and was involved across all modules. We collaborated on the patient workflow, interface, AI-assisted collection and organization, and integration. No module is attributed exclusively to me.
 
 ## System Overview
 
@@ -28,10 +28,12 @@ Project records describe engineering checks and synthetic-patient scenarios. The
 
 ## Results
 
+Our team won the **Grand Prize at the Stanford Hackathon** with Visit Smoothie.
+
 The completed local prototype connects symptom intake, patient-confirmed reports, and post-visit instruction organization. It has not been deployed for real patient use. Public deployment, HTTPS, operational key management, medical review, and further privacy safeguards remain work. No measured clinical benefit is claimed.
 
 ## Failures and Lessons
 
 Feature availability and reminder delivery depend on configuration and runtime conditions. A visible control alone cannot establish that a workflow works in practice. The project reinforced the need to distinguish patient wording, clinician instructions, and generated organization, and to test real input and delivery conditions before making reliability claims.
 
-*Source note: October 4 repository README and handoff documentation, plus the owner's account of collaborative contributions. [Source repository (private; authorized collaborators only)](https://github.com/lucasnotfound59/TriMedManagement). No patient records or private operational details are published.*
+*Source note: October 4 repository README and handoff documentation, plus the owner's account of collaborative contributions and October 5 confirmation of the project name and award. [Source repository (private; authorized collaborators only)](https://github.com/lucasnotfound59/TriMedManagement). No patient records or private operational details are published.*

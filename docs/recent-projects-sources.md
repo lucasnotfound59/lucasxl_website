@@ -19,7 +19,9 @@ Read through authenticated GitHub API: `README.md` and `docs/交接说明.md`, m
 
 Owner statement: jointly developed with friends; involved across all modules. Do not assign sole authorship or claim personally implemented a named colleague's account/security module.
 
-The owner's original request identifies this as the product built during the Stanford Venture Trip hackathon. Use this personal event context in both languages without inferring university affiliation, sponsorship or awards.
+The owner's original request identifies this as the product built during the Stanford Venture Trip hackathon. Use this personal event context in both languages without inferring university affiliation, sponsorship or awards beyond those explicitly provided by the owner.
+
+On October 5, the owner requested the display name **Visit Smoothie** and supplied the award **Grand Prize of the Stanford Hackathon**. The bilingual timeline summaries and project Results section use this owner-confirmed award without adding an official event edition, award date, ranking, sponsorship or institutional-affiliation claim. The route, repository URL and supplied screenshot remain unchanged; historical README branding below records the earlier source name.
 
 The owner supplied `Screenshot 2026-10-04 at 14.17.59.png` as VisitSmoothie material. The unchanged PNG is stored at `public/images/photos/visit-smoothie-welcome.png` and used for its timeline cover and detail-page image. It depicts the Chinese welcome screen, not patient data or clinical-outcome evidence; bilingual alternative descriptions identify the interface.
 
