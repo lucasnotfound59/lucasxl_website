@@ -8,6 +8,8 @@ const hasAboutPreview=englishPreview.length>0;
 ---
 
 <section id="about" class="home-preview page-section" aria-labelledby="about-preview-heading">
+  <div class="about-preview__layout">
+  <div class="about-preview__text">
   <h2 id="about-preview-heading" class="page-title" data-lang-group>
     <span data-lang="en">{ui.en.about}</span>
     <span data-lang="zh" hidden>{ui.zh.about}</span>
@@ -24,4 +26,10 @@ const hasAboutPreview=englishPreview.length>0;
       <span data-lang="zh" hidden>{ui.zh.readMore}</span>
     </span>
   </a>
+  </div>
+  <figure class="about-preview__sunset">
+    <img src="/images/photos/about-sunset.webp" width="1350" height="1800" alt="a nice sunset at BNDS" loading="lazy" decoding="async" />
+    <figcaption>a nice sunset at BNDS</figcaption>
+  </figure>
+  </div>
 </section>

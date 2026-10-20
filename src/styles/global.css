@@ -208,6 +208,30 @@ main {
   max-width: 46rem;
 }
 
+.about-preview__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, .65fr);
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: center;
+}
+.about-preview__sunset { margin: 0; }
+.about-preview__sunset img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 2px solid var(--ink);
+  box-shadow: 6px 6px 0 var(--accent);
+}
+.about-preview__sunset figcaption {
+  margin-top: .75rem;
+  font-family: var(--font-mono);
+  font-size: .8rem;
+  color: var(--ink-soft);
+}
+@media (max-width: 700px) {
+  .about-preview__layout { grid-template-columns: minmax(0, 1fr); }
+}
+
 .home-preview .btn {
   margin-top: 1.25rem;
 }

@@ -14,7 +14,7 @@ Source photos remain unchanged in the local `source photos/` folder, which is ex
 | IOAI big picture.jpg | IOAI cover | ioai-group.webp |
 | galbot 1.jpg | IOAI detail | ioai-galbot-robots.webp |
 | galbot 2.jpg | IOAI detail | ioai-galbot-moment.webp |
-| nice sunset.jpg | About, confirmed by owner | about-sunset.webp |
+| nice sunset.jpg | Homepage About right column (below text on mobile); caption: a nice sunset at BNDS | about-sunset.webp |
 | CMU 4.jpg | BFIbs-Ensemble cover | cmu-campus.webp |
 | CMU with compeau.jpg | CMU photo diary | cmu-lecture-group.webp |
 | CMU with Thomas.jpg | CMU photo diary | cmu-lecture-hall.webp |
