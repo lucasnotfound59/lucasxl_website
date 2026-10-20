@@ -170,14 +170,16 @@ main {
 }
 .site-nav__links a:hover::after { transform: scaleX(1); }
 
-/* 语言切换 */
-.language-switch {
+/* 语言与主题切换 */
+.language-switch,
+.theme-switch {
   display: inline-flex;
   align-items: center;
   gap: 6px;
   font-family: var(--font-mono);
   font-size: .8rem;
 }
+.theme-switch button,
 .language-switch button {
   font-family: inherit;
   font-size: inherit;
@@ -189,11 +191,30 @@ main {
   cursor: pointer;
   transition: background .15s ease, box-shadow .15s ease, transform .15s ease;
 }
+.theme-switch button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 31px;
+  padding: 0;
+}
+.theme-switch svg {
+  width: 16px;
+  height: 16px;
+}
+.theme-switch button:hover,
 .language-switch button:hover { background: var(--yellow); }
+.theme-switch button[aria-pressed="true"],
 .language-switch button[aria-pressed="true"] {
   background: var(--yellow);
   box-shadow: 2px 2px 0 var(--ink);
   transform: translate(-1px, -1px);
+}
+.site-nav__controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
 /* ============ 首屏 ============ */
@@ -935,7 +956,7 @@ main {
   }
   .site-nav { flex-direction: column; align-items: stretch; gap: .75rem; }
   .site-nav__links { gap: 1rem; }
-  .language-switch { align-self: flex-start; }
+  .site-nav__controls { align-self: flex-start; }
   .timeline-entry {
     grid-template-columns: 1fr;
     grid-template-areas:
@@ -956,4 +977,336 @@ main {
     animation-iteration-count: 1 !important;
     transition-duration: .01ms !important;
   }
+}
+
+/* ============================================================
+   Dark mode — C 星空
+   近黑夜空；低对比文字与装饰；高对比只留给功能。
+   浅色 token 保持在上方，深色差异全部限定在 html[data-theme="dark"]。
+   ============================================================ */
+html[data-theme="dark"] {
+  color-scheme: dark;
+  --paper: #060811;
+  --surface: #0C101D;
+  --paper-deep: #111627;
+  --ink: #8A95BA;
+  --ink-soft: #7480A4;
+  --edge: #39425E;
+  --shadow: #03040A;
+  --blue: #6C8FD6;
+  --red: #A283D6;
+  --yellow: #5AAFA5;
+  --accent-ink: #060811;
+  --highlight: #1A2338;
+  --print-blue: #1B2945;
+  --print-red: #2A2140;
+  --graphic-blue: #182540;
+  --graphic-red: #271F3A;
+  --graphic-yellow: #152E2E;
+  --button-fill: #141A2B;
+  --button-hover: #182033;
+  --lift: #182033;
+  --ghost: #5A6382;
+  --focus: #8FB4F0;
+  --accent: var(--blue);
+}
+
+/* 星场画布：浅色隐藏，深色显示；星点由 src/scripts/stars.ts 绘制。 */
+#stars {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  display: none;
+}
+html[data-theme="dark"] #bg {
+  display: none;
+}
+html[data-theme="dark"] #stars {
+  display: block;
+  background:
+    radial-gradient(58% 44% at 68% 14%, rgba(53, 72, 124, 0.20), transparent 62%),
+    radial-gradient(44% 38% at 20% 78%, rgba(78, 58, 116, 0.16), transparent 66%),
+    linear-gradient(112deg, transparent 33%, rgba(40, 55, 96, 0.10) 48%, transparent 63%);
+}
+
+/* 边框：浅色用墨色，深色一律降到边缘灰。 */
+html[data-theme="dark"] :is(.site-header,.site-footer,.timeline-section,.page-section,.entry-navigation) {
+  border-color: var(--edge);
+}
+html[data-theme="dark"] :is(
+  .site-nav__brand-mark,
+  .language-switch button,
+  .theme-switch button,
+  .intro-hero__eyebrow,
+  .btn,
+  .hero-art .shape--circle,
+  .hero-art .shape--sq,
+  .stamp,
+  .timeline-start,
+  .timeline-end,
+  .timeline-event::after,
+  .timeline-entry,
+  .timeline-entry__cover img,
+  .timeline-entry__category,
+  .timeline-entry__status,
+  .contact-links a,
+  .entry-type,
+  .entry-status,
+  .media-figure img,
+  .research-figure img,
+  .entry-content code,
+  .entry-content pre,
+  .entry-content img,
+  .entry-content hr,
+  .entry-links a,
+  .entry-navigation a,
+  .about-preview__sunset img
+) {
+  border-color: var(--edge);
+}
+
+/* 表面：卡片和控件改用略高于纸面的深蓝。 */
+html[data-theme="dark"] :is(
+  .timeline-entry,
+  .intro-hero__eyebrow,
+  .btn,
+  .contact-links a,
+  .entry-links a,
+  .entry-navigation a,
+  .timeline-year__label,
+  .site-nav__brand-mark,
+  .timeline-start,
+  .timeline-end,
+  .timeline-entry__category
+) {
+  background: var(--surface);
+}
+
+/* 标题的套印阴影变暗；去掉浅色模式的高亮。 */
+html[data-theme="dark"] .intro-hero h1 {
+  text-shadow: 5px 5px 0 var(--print-red), -5px -5px 0 var(--print-blue);
+}
+html[data-theme="dark"] .entry-header h1 {
+  text-shadow: 4px 4px 0 var(--print-blue);
+}
+html[data-theme="dark"] .engineering-project .entry-header h1 {
+  text-shadow: 4px 4px 0 var(--print-red);
+}
+html[data-theme="dark"] .experience-entry .entry-header h1 {
+  text-shadow: 4px 4px 0 var(--highlight);
+}
+html[data-theme="dark"] .page-title {
+  background: linear-gradient(transparent 62%, var(--highlight) 62%, var(--highlight) 94%, transparent 94%);
+}
+
+/* 首屏几何：深色填充、边缘描边、抬升投影，不再发光。 */
+html[data-theme="dark"] .hero-art .shape--circle {
+  background: var(--graphic-blue);
+  border-color: var(--edge);
+  box-shadow: 6px 6px 0 var(--lift);
+}
+html[data-theme="dark"] .hero-art .shape--tri {
+  border-bottom-color: var(--graphic-red);
+  filter: drop-shadow(6px 6px 0 var(--lift));
+}
+html[data-theme="dark"] .hero-art .shape--sq {
+  background: var(--graphic-yellow);
+  border-color: var(--edge);
+  box-shadow: 6px 6px 0 var(--lift);
+}
+html[data-theme="dark"] .hero-art .shape--halftone {
+  opacity: .12;
+}
+html[data-theme="dark"] .stamp {
+  background: var(--print-red);
+  color: var(--ink);
+  border-color: var(--edge);
+  box-shadow: 4px 4px 0 var(--lift);
+}
+
+/* 时间线：轨道和连接线混进纸面；卡片只保留低调的厚度。 */
+html[data-theme="dark"] .timeline-rail::before {
+  background: color-mix(in srgb, var(--blue) 50%, var(--paper));
+  box-shadow: none;
+}
+html[data-theme="dark"] .timeline-event::before {
+  background: color-mix(in srgb, var(--blue) 45%, var(--paper));
+}
+html[data-theme="dark"] .timeline-event::after {
+  background: var(--red);
+  border-color: var(--edge);
+  box-shadow: none;
+}
+html[data-theme="dark"] .timeline-entry {
+  background: var(--surface);
+  box-shadow: 6px 6px 0 var(--lift);
+}
+html[data-theme="dark"] .timeline-entry:hover {
+  box-shadow: 9px 9px 0 var(--lift);
+  border-color: color-mix(in srgb, var(--blue) 30%, var(--edge));
+}
+html[data-theme="dark"] :is(.timeline-start,.timeline-end) {
+  color: var(--ink-soft);
+  border-color: var(--edge);
+  box-shadow: none;
+}
+html[data-theme="dark"] .timeline-year__label {
+  background: var(--surface);
+  border-color: color-mix(in srgb, var(--blue) 55%, var(--edge));
+}
+
+/* 顶部控件：中性底，状态只用一条蓝色下边线。 */
+html[data-theme="dark"] .site-nav__brand-mark {
+  background: var(--surface);
+  color: var(--ink-soft);
+  border-color: var(--edge);
+  box-shadow: 2px 2px 0 var(--lift);
+}
+html[data-theme="dark"] :is(.language-switch button,.theme-switch button) {
+  background: transparent;
+  color: var(--ink-soft);
+  border-color: var(--edge);
+  box-shadow: none;
+}
+html[data-theme="dark"] :is(.language-switch button:hover,.theme-switch button:hover) {
+  background: var(--button-hover);
+  color: var(--ink);
+}
+html[data-theme="dark"] :is(.language-switch button[aria-pressed="true"],.theme-switch button[aria-pressed="true"]) {
+  background: var(--surface);
+  color: var(--ink);
+  border-color: var(--edge);
+  border-bottom-color: var(--blue);
+  box-shadow: 2px 2px 0 var(--lift);
+}
+html[data-theme="dark"] .site-nav__links a::after {
+  background: var(--blue);
+  box-shadow: none;
+}
+
+/* 按钮与卡片：中性表面；hover 才出现蓝色边框。 */
+html[data-theme="dark"] :is(.btn,.contact-links a,.entry-links a,.entry-navigation a) {
+  background: var(--surface);
+  color: var(--ink-soft);
+  border-color: var(--edge);
+  box-shadow: 4px 4px 0 var(--lift);
+}
+html[data-theme="dark"] :is(.btn:hover,.contact-links a:hover,.entry-links a:hover,.entry-navigation a:hover) {
+  background: var(--button-hover);
+  color: var(--ink);
+  border-color: var(--blue);
+  box-shadow: 6px 6px 0 var(--lift);
+}
+html[data-theme="dark"] .btn:active {
+  box-shadow: 2px 2px 0 var(--lift);
+}
+html[data-theme="dark"] .btn.btn--primary {
+  background: var(--surface);
+  color: var(--ink);
+  border-color: var(--blue);
+  box-shadow: 4px 4px 0 var(--lift);
+}
+html[data-theme="dark"] .btn.btn--primary:hover {
+  background: var(--button-hover);
+  color: var(--ink);
+  border-color: var(--focus);
+  box-shadow: 6px 6px 0 var(--lift);
+}
+
+/* 类型/状态标签：中性底 + 6px 分类色方块，不再整块上色。 */
+html[data-theme="dark"] .entry-type {
+  background: var(--surface);
+  color: var(--ink-soft);
+  border-color: var(--edge);
+  box-shadow: none;
+  padding-left: 10px;
+}
+html[data-theme="dark"] .entry-type::before {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin-right: 8px;
+  vertical-align: 2px;
+  background: var(--accent);
+}
+html[data-theme="dark"] :is(.entry-status,.timeline-entry__status) {
+  background: transparent;
+  color: var(--ink-soft);
+  border-color: var(--edge);
+  box-shadow: none;
+}
+
+/* 内容图片：整体压暗，白色图表不再刺眼。 */
+html[data-theme="dark"] :is(
+  .timeline-entry__cover img,
+  .media-figure img,
+  .research-figure img,
+  .photo-gallery img,
+  .about-preview__sunset img,
+  .entry-content img
+) {
+  filter: brightness(.8) saturate(.9);
+  border-color: var(--edge);
+}
+html[data-theme="dark"] .media-figure img {
+  background: var(--paper-deep);
+  box-shadow: 6px 6px 0 var(--lift);
+}
+html[data-theme="dark"] .research-figure img {
+  border: 2px solid var(--edge);
+  background: var(--paper-deep);
+  box-shadow: none;
+}
+html[data-theme="dark"] .about-preview__sunset img {
+  box-shadow: 6px 6px 0 var(--lift);
+}
+html[data-theme="dark"] .timeline-entry__cover img {
+  background: var(--paper-deep);
+}
+html[data-theme="dark"] .photo-gallery img {
+  background: var(--paper-deep);
+}
+
+/* 长文内容。 */
+html[data-theme="dark"] .entry-content a {
+  color: var(--blue);
+}
+html[data-theme="dark"] .entry-content a:hover {
+  color: var(--red);
+}
+html[data-theme="dark"] .entry-content code {
+  background: var(--paper-deep);
+  border-color: var(--edge);
+}
+html[data-theme="dark"] .entry-content pre {
+  background: var(--surface);
+  color: var(--ink);
+  border-color: var(--edge);
+}
+html[data-theme="dark"] .entry-content blockquote {
+  border-color: var(--red);
+}
+html[data-theme="dark"] .entry-content hr {
+  border-color: var(--edge);
+}
+html[data-theme="dark"] .entry-content img {
+  border-color: var(--edge);
+}
+
+/* 页脚盲印、焦点与选区。 */
+html[data-theme="dark"] .site-footer__name {
+  color: var(--ghost);
+}
+html[data-theme="dark"] :focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+  box-shadow: none;
+}
+html[data-theme="dark"] ::selection {
+  background: var(--blue);
+  color: var(--accent-ink);
 }

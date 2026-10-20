@@ -2,6 +2,7 @@
 import {profile} from '../data/profile';
 import {ui} from '../i18n/ui';
 import LanguageSwitch from './LanguageSwitch.astro';
+import ThemeSwitch from './ThemeSwitch.astro';
 ---
 
 <header class="site-header">
@@ -19,7 +20,10 @@ import LanguageSwitch from './LanguageSwitch.astro';
         <a href="/resume"><span data-lang-group><span data-lang="en">{ui.en.resume}</span><span data-lang="zh" hidden>{ui.zh.resume}</span></span></a>
         <a href="/#contact"><span data-lang-group><span data-lang="en">{ui.en.contact}</span><span data-lang="zh" hidden>{ui.zh.contact}</span></span></a>
       </div>
-      <LanguageSwitch />
+      <div class="site-nav__controls">
+        <LanguageSwitch />
+        <ThemeSwitch />
+      </div>
     </nav>
   </div>
 </header>

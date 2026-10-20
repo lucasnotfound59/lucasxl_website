@@ -20,6 +20,18 @@ npm run test:e2e
 
 `npm run build` also runs content validation and Astro type checks. Browser tests cover desktop and mobile projects, including accessibility checks.
 
+## Colour theme
+
+The site follows `prefers-color-scheme` by default and offers **System / Light / Dark** in the header. The choice is stored in `localStorage` under `lucasxl-theme` and resolved before first paint, so a stored dark preference does not flash the light theme.
+
+- Light mode is the original paper-and-ink Riso design and is unchanged.
+- Dark mode is the approved **C 星空** design: near-black blue paper, lower-luminance text, dimmed content images, and a low-contrast starfield canvas with slow drift, twinkle, pointer parallax, and rare shooting stars.
+- `prefers-reduced-motion: reduce` renders the starfield statically; the animation also pauses when the tab is hidden.
+- High-contrast colour is reserved for body text, links, focus, and interaction feedback; decorative borders, chips, timeline marks, and the footer emboss stay low contrast.
+- The `theme-color` meta is `#F3EEE3` in light and `#060811` in dark.
+
+Theme behaviour lives in `src/scripts/theme.ts`, the starfield in `src/scripts/stars.ts`, and both palettes in `src/styles/global.css`.
+
 ## Author content
 
 Each entry has its own directory. Keep the directory name, the `slug` in `meta.json`, and the route identifier identical.

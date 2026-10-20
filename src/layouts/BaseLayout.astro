@@ -32,10 +32,27 @@ const canonicalURL=new URL(Astro.url.pathname,Astro.site);
     </script>
     <noscript><link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Noto+Sans+SC:wght@400;500;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" /></noscript>
     <meta name="theme-color" content="#F3EEE3" />
+    <script is:inline>
+      (function () {
+        try {
+          var mode = localStorage.getItem('lucasxl-theme');
+          if (mode !== 'light' && mode !== 'dark' && mode !== 'system') mode = 'system';
+          var dark = mode === 'dark' ||
+            (mode === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+          var theme = dark ? 'dark' : 'light';
+          document.documentElement.dataset.theme = theme;
+          document.documentElement.dataset.themeMode = mode;
+          document.documentElement.style.colorScheme = theme;
+          var meta = document.querySelector('meta[name="theme-color"]');
+          if (meta) meta.setAttribute('content', theme === 'dark' ? '#060811' : '#F3EEE3');
+        } catch (e) {}
+      })();
+    </script>
     <title>{title}</title>
   </head>
   <body>
     <canvas id="bg" aria-hidden="true"></canvas>
+    <canvas id="stars" aria-hidden="true"></canvas>
     <SiteHeader />
     <main id="main-content">
       <slot />
@@ -222,6 +239,10 @@ const canonicalURL=new URL(Astro.url.pathname,Astro.site);
     if (document.hidden) { running = false; cancelAnimationFrame(rafId); }
   });
 })();
+</script>
+<script>
+  import {initStars} from '../scripts/stars';
+  initStars();
 </script>
   </body>
 </html>
